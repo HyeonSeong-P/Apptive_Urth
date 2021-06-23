@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:label="main_fragment"
+        android:name="com.example.firebasept.fragment.MainFragment"
+        />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:label="home_fragment"
+        android:name="com.example.firebasept.fragment.HomeFragment"
+        />
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:label="home_fragment"
+        android:name="com.example.firebasept.fragment.SignUpFragment"
+        />
+
+    <fragment
+        android:id="@+id/writePostFragment"
+        android:label="community_fragment"
+        android:name="com.example.firebasept.fragment.WritePostFragment"
+        />
+
+    <fragment
+        android:id="@+id/usStyleFragment"
+        android:label="us_style_fragment"
+        android:name="com.example.firebasept.fragment.UsStyleFragment"
+        />
+
+    <fragment
+        android:id="@+id/postFragment"
+        android:label="post_fragment"
+        android:name="com.example.firebasept.fragment.SeePostFragment"
+        />
+
+</navigation>

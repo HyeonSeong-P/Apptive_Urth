@@ -30,14 +30,15 @@ class PostViewAdapter(private val viewModel: UsStyleViewModel):RecyclerView.Adap
         }
         var i=0;
         holder.view.heart_button.setOnClickListener {
-            viewModel.clickLike(position)
+            viewModel.clickLike(post.uid,post.timestamp)
+            viewModel.clickLikePostAdd(post.uid,post.timestamp)
             //viewModel.callNotify()
         }
         if(post.likes.containsKey(auth.uid)){
-            holder.view.heart_button.setImageResource(R.drawable.ic_baseline_favorite_24)
+            holder.view.heart_button.setImageResource(R.drawable.red_heart)
         }
         else{
-            holder.view.heart_button.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            holder.view.heart_button.setImageResource(R.drawable.empty_heart)
         }
 
     }

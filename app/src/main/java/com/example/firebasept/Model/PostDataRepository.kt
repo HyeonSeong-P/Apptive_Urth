@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.firebasept.Data.PostData
+import com.example.firebasept.Data.UserDTO
 import com.example.firebasept.SingleLiveEvent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
@@ -13,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class PostDataRepository(private val db: FirebaseFirestore) {
     private val mAuth = FirebaseAuth.getInstance()
+    private var sharePostList:MutableList<PostData> = mutableListOf()
     //lateinit var db:FirebaseFirestore
     private val _callBackState = SingleLiveEvent<Boolean>()
     val callBackState get() = _callBackState
@@ -27,6 +29,16 @@ class PostDataRepository(private val db: FirebaseFirestore) {
 
 
 
+    fun getSearchPostData(uid:String,timeStamp:String): PostData? {
+        var returnPost: PostData? = null
+        for(post in sharePostList){
+            if(post.uid == uid && post.timestamp == timeStamp){
+                returnPost = post
+            }
+        }
+        //Log.d("in rep", returnPost!!.likeCount.toString())
+        return returnPost
+    }
 
     fun getP(){
         var postList:MutableList<PostData> = mutableListOf()
@@ -37,6 +49,7 @@ class PostDataRepository(private val db: FirebaseFirestore) {
                     var postData = doc.toObject(PostData::class.java)
                     postList.add(postData)
                 }
+                sharePostList = postList
                 livePostData.setValue(postList.toList())// 무조건 여기 안에 넣어라!
                 _callBackState.setValue(true)
 
@@ -80,18 +93,19 @@ class PostDataRepository(private val db: FirebaseFirestore) {
     }
 
     //댓글 달기
-    fun registerCommentInRepository(position: Int, commentInformation:Pair<String,String>) {
+    fun registerCommentInRepository(postUid:String, postTimestamp:String, commentInformation:Pair<String,String>) {
         var postCollectionRef: DocumentReference
         db.collection("post").get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
                     var i: Int = 0
                     for (doc in collection!!) {
-                        if (i == position) {
+                        var postData = doc.toObject(PostData::class.java)
+                        if (postData.uid == postUid && postData.timestamp == postTimestamp) {
                             postCollectionRef = doc.reference // 스냅샷으로부터 리퍼런스 가져오기
                             db.runTransaction { transaction ->
                                 //val snapshot = transaction.get(postCollectionRef)
-                                var postData = doc.toObject(PostData::class.java)
+                                //var postData = doc.toObject(PostData::class.java)
                                 postData.comments[commentInformation.first] =
                                     commentInformation.second
                                 postData.commentCount += 1
@@ -115,18 +129,19 @@ class PostDataRepository(private val db: FirebaseFirestore) {
                 }
             }
     }
-    fun deleteCommentInRepository(position: Int, key: String){
+
+    fun deleteCommentInRepository(postUid:String, postTimestamp:String, key: String){
         var postCollectionRef: DocumentReference
         db.collection("post").get()
             .addOnSuccessListener { collection ->
                 if (collection != null) {
                     var i: Int = 0
                     for (doc in collection!!) {
-                        if (i == position) {
+                        var postData = doc.toObject(PostData::class.java)
+                        if (postData.uid == postUid && postData.timestamp == postTimestamp) {
                             postCollectionRef = doc.reference // 스냅샷으로부터 리퍼런스 가져오기
                             db.runTransaction { transaction ->
                                 //val snapshot = transaction.get(postCollectionRef)
-                                var postData = doc.toObject(PostData::class.java)
                                 postData.comments.remove(key)
                                 postData.commentCount -= 1
                                 transaction.update(postCollectionRef, "comments", postData.comments)
@@ -150,18 +165,17 @@ class PostDataRepository(private val db: FirebaseFirestore) {
             }
     }
     //좋아요
-    fun clickLikeInRepository(position:Int){
+    fun clickLikeInRepository(uid:String,timeStamp: String){
         var postCollectionRef:DocumentReference
         db.collection("post").get()
             .addOnSuccessListener { collection ->
                 if(collection != null){
-                    var i:Int = 0
                     for (doc in collection!!) {
-                        if(i == position){
+                        var postData = doc.toObject(PostData::class.java)
+                        if(postData.uid == uid && postData.timestamp == timeStamp){
                             postCollectionRef = doc.reference // 스냅샷으로부터 리퍼런스 가져오기
                             db.runTransaction { transaction ->
                                 //val snapshot = transaction.get(postCollectionRef)
-                                var postData = doc.toObject(PostData::class.java)
                                 if(postData.likes.containsKey(mAuth.currentUser.uid)){
                                     postData.likeCount -= 1
                                     postData.likes.remove(mAuth.currentUser.uid)
@@ -179,8 +193,6 @@ class PostDataRepository(private val db: FirebaseFirestore) {
                             }.addOnFailureListener {  }
                             break
                         }
-                        i+=1
-
                     }
                 }
                 else{
@@ -223,6 +235,31 @@ class PostDataRepository(private val db: FirebaseFirestore) {
 
     }
 
+
+    fun deletePost(uid:String,timeStamp: String){
+        var postCollectionRef:DocumentReference
+        db.collection("post").get()
+            .addOnSuccessListener { collection ->
+                if(collection != null){
+                    for (doc in collection!!) {
+                        var postData = doc.toObject(PostData::class.java)
+                        if(postData.uid == uid && postData.timestamp == timeStamp){
+                            postCollectionRef = doc.reference // 스냅샷으로부터 리퍼런스 가져오기
+                            postCollectionRef.delete()
+                                .addOnSuccessListener {
+                                    getP()
+                                }
+                                .addOnFailureListener {  }
+                            break
+                        }
+                    }
+                }
+                else{
+
+                }
+
+            }
+    }
     fun getAll(): LiveData<List<PostData>> { return livePostData }
 
 }

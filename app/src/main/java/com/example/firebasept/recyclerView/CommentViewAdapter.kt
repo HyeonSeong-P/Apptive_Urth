@@ -11,10 +11,10 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.comment_design.view.*
 import kotlinx.android.synthetic.main.post_design.view.*
 
-class CommentViewAdapter(private val viewModel: UsStyleViewModel, private val postPosition: Int): RecyclerView.Adapter<CommentViewHolder>() {
+class CommentViewAdapter(private val viewModel: UsStyleViewModel, private val postUid: String, private val postTimeStamp:String): RecyclerView.Adapter<CommentViewHolder>() {
     override fun getItemCount(): Int {
-        Log.d("개수",viewModel.getPostData()!![postPosition].commentCount.toString())
-        return viewModel.getPostData()!![postPosition].commentCount
+        //Log.d("개수",viewModel.getPost!!.commentCount.toString())
+        return viewModel.searchPostData(postUid,postTimeStamp)!!.commentCount
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
@@ -24,14 +24,20 @@ class CommentViewAdapter(private val viewModel: UsStyleViewModel, private val po
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         var auth = FirebaseAuth.getInstance()
-        val post = viewModel.getPostData()!![postPosition]
-        holder.bind(post,position)
-        holder.itemView.setOnClickListener {
+        val post = viewModel.searchPostData(postUid,postTimeStamp)!!
+        var list = post.comments.toList().sortedBy { it.first.split(",")[1] }
+        //val uid = list[position].first.split(",")[0]
+        //val time = list[position].first.split(",")[1]
+        holder.bind(post,position,viewModel)
+        /*holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
-        }
+        }*/
         holder.view.delete_comment_button.setOnClickListener {
-            val key = holder.view.nickname_text_comment.text.toString() + "," + holder.view.comment_time_text.text.toString()
-            viewModel.deleteComment(postPosition,key)
+            //Log.d("Position",position.toString())
+            val auth = FirebaseAuth.getInstance()
+            //val key = auth.currentUser.uid + "," + holder.view.comment_time_text.text.toString()
+            val key = list[position].first
+            viewModel.deleteComment(post.uid,post.timestamp,key)
         }
 
     }

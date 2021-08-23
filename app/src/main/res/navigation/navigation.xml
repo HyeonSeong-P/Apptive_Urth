@@ -4,6 +4,7 @@
     android:id="@+id/navigation"
     app:startDestination="@id/mainFragment">
 
+
     <fragment
         android:id="@+id/mainFragment"
         android:label="main_fragment"
@@ -16,11 +17,6 @@
         android:name="com.example.firebasept.fragment.HomeFragment"
         />
 
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:label="home_fragment"
-        android:name="com.example.firebasept.fragment.SignUpFragment"
-        />
 
     <fragment
         android:id="@+id/writePostFragment"
@@ -38,6 +34,72 @@
         android:id="@+id/postFragment"
         android:label="post_fragment"
         android:name="com.example.firebasept.fragment.SeePostFragment"
-        />
+        >
+        <action
+            android:id="@+id/action_postFragment_to_writePostFragment"
+            app:popUpTo="@id/postFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/writePostFragment"
+            />
+    </fragment>
 
+    <fragment
+        android:id="@+id/signUpBaseFragment"
+        android:label="sign_up_base_fragment"
+        android:name="com.example.firebasept.fragment.SignUpBaseFragment"/>
+
+    <fragment
+        android:id="@+id/usNewsFragment"
+        android:label="us_news_fragment"
+        android:name="com.example.firebasept.fragment.UsNewsFragment"/>
+
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:label="my_page_fragment"
+        android:name="com.example.firebasept.fragment.MyPageFragment"/>
+
+    <fragment
+        android:id="@+id/brandProductFragment"
+        android:label="brand_product_fragment"
+        android:name="com.example.firebasept.fragment.BrandProductFragment"/>
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:label="setting_fragment"
+        android:name="com.example.firebasept.fragment.SettingFragment"/>
+
+    <fragment
+        android:id="@+id/editPasswordFragment"
+        android:label="edit_password_fragment"
+        android:name="com.example.firebasept.fragment.EditPasswordFragment"/>
+
+    <fragment
+        android:id="@+id/findPasswordFragment"
+        android:label="find_password_fragment"
+        android:name="com.example.firebasept.fragment.FindPasswordFragment"/>
+
+    <fragment
+        android:id="@+id/detailProductFragment"
+        android:label="detail_product_fragment"
+        android:name="com.example.firebasept.fragment.DetailProductFragment"/>
+
+    <fragment
+        android:id="@+id/detailBrandFragment"
+        android:label="detail_brand_fragment"
+        android:name="com.example.firebasept.fragment.DetailBrandFragment"/>
+
+    <fragment
+        android:id="@+id/moreNewProductFragment"
+        android:label="more_new_product_fragment"
+        android:name="com.example.firebasept.fragment.MoreNewProductFragment"/>
+
+    <fragment
+        android:id="@+id/userPagePostFragment"
+        android:label="user_page_post_fragment"
+        android:name="com.example.firebasept.fragment.UserFragment"/>
+
+    <fragment
+        android:id="@+id/searchBrandProductFragment"
+        android:label="search_brand_product_fragment"
+        android:name="com.example.firebasept.fragment.SearchBrandProductFragment"/>
 </navigation>

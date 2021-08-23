@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:includeFontPadding="false"
+        android:id="@+id/tag_btn_in_recyclerview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:text="#해시태그"
+        android:textColor="#3e3a39"
+        android:background="@drawable/circle_image"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

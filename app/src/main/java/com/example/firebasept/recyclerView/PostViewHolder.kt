@@ -12,7 +12,7 @@ class PostViewHolder(v:View):RecyclerView.ViewHolder(v) {
         //var f: File? = File(postDTO.imageUrl)
         //var f: File? = File("gs://jellyproject-3dfae.appspot.com/images/IMG_20210322_173503.jpg)
         //view.post_image.setImageURI(Uri.parse(postDTO.imageUrl))
-        Glide.with(view).load(postDTO.imageUrl).into(view.post_image)// url로 불러올때 이거쓰자! 이게 좋다!!
-        view.post_user_name_text.setText(postDTO.userID)
+        Glide.with(view).load(postDTO.imageUrl[0]).into(view.post_image)// url로 불러올때 이거쓰자! 이게 좋다!! 글라이드 개꿀!!
+        view.post_user_name_text.setText(postDTO.nickname)
     }
 }

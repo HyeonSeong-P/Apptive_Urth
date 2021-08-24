@@ -35,6 +35,7 @@ import com.example.firebasept.viewmodel.UsStyleViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_detail_brand.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_post.*
 import kotlinx.android.synthetic.main.fragment_product.*
@@ -97,6 +98,11 @@ class SeePostFragment:Fragment(), PostListner {
 
         adapter2 = SeePostViewPagerAdapter(photoList)
 
+
+        viewModel.initU()
+        viewModel.initPR()
+        //viewModel.initP()
+
         //comment_recyclerview_post.adapter = CommentViewAdapter(viewModel,position)
         //comment_recyclerview_post.layoutManager = LinearLayoutManager(activity)
 
@@ -106,6 +112,7 @@ class SeePostFragment:Fragment(), PostListner {
             adapter = PutOnProductInPostViewAdapter(viewModel, productList)
             postData = it.first
             position = it.second
+            Log.d("확인",postData!!.likes.containsKey(auth.currentUser.uid).toString())
             setView()
             setRecyclerView()
             if (postData!!.uid == auth.currentUser.uid) {
@@ -119,8 +126,7 @@ class SeePostFragment:Fragment(), PostListner {
                 findNavController().navigate(R.id.userPagePostFragment)
             }
         })
-        viewModel.initU()
-        viewModel.initPR()
+
 
         adapter = PutOnProductInPostViewAdapter(viewModel, productList)
 
@@ -133,6 +139,7 @@ class SeePostFragment:Fragment(), PostListner {
 
         viewModel.allProductData.observe(viewLifecycleOwner, Observer {
             setRecyclerView()
+            //setView()
             adapter.notifyDataSetChanged()
 
         })
@@ -159,19 +166,7 @@ class SeePostFragment:Fragment(), PostListner {
         viewModel.getCallBackState().observe(viewLifecycleOwner, Observer {
             (comment_recyclerview_post.adapter as CommentViewAdapter).notifyDataSetChanged()
         })
-        viewModel.getLikeState().observe(viewLifecycleOwner, Observer {
-            //postData = viewModel.searchPostData(postData!!.uid,postData!!.timestamp)!!
-            //Log.d("dd",postData!!.likeCount.toString())
-            //like_count.text = postData!!.likeCount.toString()
-            if(clickState){
-                post_heart_button.setImageResource(R.drawable.empty_heart)
-                clickState = false
-            }
-            else{
-                post_heart_button.setImageResource(R.drawable.red_heart)
-                clickState = true
-            }
-        })
+
         viewModel.getCommentState().observe(viewLifecycleOwner, Observer {
             //postData = viewModel.searchPostData(postData!!.uid,postData!!.timestamp)!!
             //comment_count.text = postData.commentCount.toString()
@@ -186,7 +181,7 @@ class SeePostFragment:Fragment(), PostListner {
         /*post_menu_bar.setOnClickListener{
             showDialog()
         }*/
-        post_heart_button.setOnClickListener {
+        post_heart_button_see_post.setOnClickListener {
             viewModel.clickLike(postData!!.uid,postData!!.timestamp)
             viewModel.clickLikePostAdd(postData!!.uid,postData!!.timestamp)
         }
@@ -280,6 +275,7 @@ class SeePostFragment:Fragment(), PostListner {
             //Some implementation
         }.attach()
 
+
         Log.d("이미지 링크",postData!!.imageUrl[0])
         user_name_text_in_post.text = postData!!.nickname
         post_title_text.text = postData!!.title
@@ -288,13 +284,14 @@ class SeePostFragment:Fragment(), PostListner {
         like_count.text = postData!!.likeCount.toString()
         comment_count.text = postData!!.commentCount.toString()
 
+        Log.d("확인2",postData!!.likes.containsKey(auth.currentUser.uid).toString())
         if(postData!!.likes.containsKey(auth.currentUser.uid)){
             clickState = true
-            post_heart_button.setImageResource(R.drawable.red_heart)
+            post_heart_button_see_post.setImageResource(R.drawable.red_heart)
         }
         else{
             clickState = false
-            post_heart_button.setImageResource(R.drawable.empty_heart)
+            post_heart_button_see_post.setImageResource(R.drawable.empty_heart)
         }
     }
 

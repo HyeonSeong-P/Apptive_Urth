@@ -18,7 +18,7 @@ class HomePostViewAdapter(private val viewModel: HomeViewModel):RecyclerView.Ada
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePostViewHolder {
-        val myLayout:Int = R.layout.post_design
+        val myLayout:Int = R.layout.home_post_design
         return HomePostViewHolder(LayoutInflater.from(parent.context).inflate(myLayout, parent, false))
     }
 

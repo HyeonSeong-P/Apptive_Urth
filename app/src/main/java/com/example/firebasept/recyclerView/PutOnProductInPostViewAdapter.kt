@@ -20,7 +20,7 @@ class PutOnProductInPostViewAdapter(private val viewModel: UsStyleViewModel,priv
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PutOnProductInPostViewHolder {
-        val myLayout:Int = R.layout.product_design
+        val myLayout:Int = R.layout.product_design_in_post
         return PutOnProductInPostViewHolder(LayoutInflater.from(parent.context).inflate(myLayout, parent, false))
     }
 

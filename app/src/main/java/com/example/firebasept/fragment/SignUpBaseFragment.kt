@@ -145,7 +145,15 @@ class SignUpBaseFragment: Fragment() {
 
         create_user_btn.setOnClickListener {
             //Log.d("User data",emailString + " " + passwordString + " " + nicknameString)
-            createUser(emailString, passwordString)
+            //createUser(emailString, passwordString)
+            val user = auth.currentUser
+            val userData: UserDTO = UserDTO()
+            userData.userEmail = emailString
+            userData.password = passwordString
+            userData.nickName = nicknameString
+
+            viewModel.setUserDTOForLastStep(userData)
+            findNavController().navigate(R.id.signUpLastStepFragment)
         }
 
     }

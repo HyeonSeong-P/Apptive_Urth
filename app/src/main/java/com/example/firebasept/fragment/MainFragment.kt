@@ -113,9 +113,9 @@ class MainFragment:Fragment() {
                     val user = auth.currentUser
                     if(user?.isEmailVerified!!){
                         viewModel.editUserPassword(password_edit_text.text.toString())
-                        /*Toast.makeText(requireContext(), "로그인 완료",
+                        Toast.makeText(requireContext(), "로그인 완료",
                             Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.homeFragment)*/
+                        //findNavController().navigate(R.id.homeFragment)
                     }
                     else{
                        /* Toast.makeText(requireContext(), "이메일 인증을 완료해주세요",

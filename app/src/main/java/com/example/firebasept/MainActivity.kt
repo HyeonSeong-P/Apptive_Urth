@@ -115,8 +115,8 @@ class MainActivity : AppCompatActivity(){
             val user = it.currentUser
             if(user!=null){
                 if(user.isEmailVerified!!){
-                    Toast.makeText(this, "로그인 완료",
-                        Toast.LENGTH_SHORT).show()
+                    /*Toast.makeText(this, "로그인 완료",
+                        Toast.LENGTH_SHORT).show()*/
                     findNavController(R.id.nav_host_fragment).navigate(R.id.homeFragment)
                 }
                 else{

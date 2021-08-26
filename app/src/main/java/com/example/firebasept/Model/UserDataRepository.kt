@@ -2,10 +2,13 @@ package com.example.firebasept.Model
 
 import android.content.ContentValues
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.findNavController
 import com.example.firebasept.Data.PostData
 import com.example.firebasept.Data.UserDTO
+import com.example.firebasept.R
 import com.example.firebasept.SingleLiveEvent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
@@ -13,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 class UserDataRepository(private val db: FirebaseFirestore) {
+    private val auth = FirebaseAuth.getInstance()
     private val tagList = arrayListOf<String>("#비건소재","#사회공헌/기부","#업사이클링","#친환경소재","#동물복지")
 
     private val mAuth = FirebaseAuth.getInstance()
@@ -21,6 +25,9 @@ class UserDataRepository(private val db: FirebaseFirestore) {
     //lateinit var db:FirebaseFirestore
     private val _callBackState = SingleLiveEvent<Boolean>()
     val callBackState get() = _callBackState
+
+    private val _signUpCallBack = SingleLiveEvent<Boolean>()
+    val signUpCallBack:LiveData<Boolean> get() = _signUpCallBack
 
     private var liveUserData: MutableLiveData<List<UserDTO>> = MutableLiveData<List<UserDTO>>()
 
@@ -43,6 +50,7 @@ class UserDataRepository(private val db: FirebaseFirestore) {
             }
         }
     }
+
 
     /*fun getUserDirect(uid: String): UserDTO? {
         var returnUser:UserDTO? = null

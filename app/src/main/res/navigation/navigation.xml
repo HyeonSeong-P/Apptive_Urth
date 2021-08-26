@@ -102,4 +102,9 @@
         android:id="@+id/searchBrandProductFragment"
         android:label="search_brand_product_fragment"
         android:name="com.example.firebasept.fragment.SearchBrandProductFragment"/>
+
+    <fragment
+        android:id="@+id/signUpLastStepFragment"
+        android:label="sign_up_last_step_fragment"
+        android:name="com.example.firebasept.fragment.SignUpLastStepFragment"/>
 </navigation>

@@ -8,22 +8,36 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.firebasept.Data.UserDTO
+import com.example.firebasept.Model.BrandProductDataRepository
+import com.example.firebasept.Model.PostDataRepository
+import com.example.firebasept.Model.UserDataRepository
 import com.example.firebasept.R
+import com.example.firebasept.viewmodel.MyPageViewModel
+import com.example.firebasept.viewmodel.MyPageViewModelFactory
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
 class MainFragment:Fragment() {
 
-    // [START declare_auth]
-    private lateinit var auth: FirebaseAuth
-    // [END declare_auth]
+    lateinit var auth: FirebaseAuth
+    lateinit var db: FirebaseFirestore
+    lateinit var repository: PostDataRepository
+    lateinit var repository2: UserDataRepository
+    lateinit var repository3: BrandProductDataRepository
+    lateinit var factory: MyPageViewModelFactory
+    lateinit var viewModel: MyPageViewModel
+    var userDTO: UserDTO? = null
     //private lateinit var mAuthStateListener: FirebaseAuth.AuthStateListener
     private val RC_SIGN_IN = 100
     private var googleSignInClient: GoogleSignInClient? = null
@@ -33,6 +47,7 @@ class MainFragment:Fragment() {
 
 
     override fun onCreateView(
+
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +57,19 @@ class MainFragment:Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+        repository = PostDataRepository(db)
+        repository2 = UserDataRepository(db)
+        repository3 = BrandProductDataRepository(db)
+        factory = MyPageViewModelFactory(repository,repository2,repository3)
+        viewModel = ViewModelProvider(requireParentFragment(),factory).get(
+            MyPageViewModel::class.java)
+
+
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -60,47 +87,22 @@ class MainFragment:Fragment() {
             val signInIntent = googleSignInClient?.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
+        /*email_sign_in_button.setOnClickListener{
+            loginUser(email_edit_text.text.toString(),password_edit_text.text.toString())
+        }*/
+        go_to_sign_up_btn.setOnClickListener {
+            findNavController().navigate(R.id.signUpBaseFragment)
+        }
+        go_to_find_password_btn.setOnClickListener {
+            findNavController().navigate(R.id.findPasswordFragment)
+        }
+
         email_sign_in_button.setOnClickListener{
             loginUser(email_edit_text.text.toString(),password_edit_text.text.toString())
         }
-        go_to_sign_up_btn.setOnClickListener {
-            findNavController().navigate(R.id.signUpFragment)
-        }
-
-        /*mAuthStateListener = FirebaseAuth.AuthStateListener{
-            val user = it.currentUser
-            if(user!=null){
-                Toast.makeText(requireContext(), "로그인 완료",
-                    Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.homeFragment)
-            }
-            else{
-            }
-
-        }
-        auth!!.addAuthStateListener(mAuthStateListener!!) // <필수> 어스스테이트리스너 할당하고 추가해줘야함.*/
 
     }
-    /*private fun createUser(email:String, password:String){
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("TAG", "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    Toast.makeText(requireContext(), "회원 가입 성공",
-                        Toast.LENGTH_SHORT).show()
-                    //updateUI(user)
-                } else { // 회원가입 실패일때 즉 이미 아이디 있을때.
-                    // If sign in fails, display a message to the user.
-                    loginUser(email,password)
-                    Log.w("TAG", "createUserWithEmail:failure", task.exception)
-                    //updateUI(null)
-                }
 
-                // ...
-            }
-    }*/
 
     private fun loginUser(email:String, password:String){
         auth.signInWithEmailAndPassword(email, password)
@@ -110,9 +112,10 @@ class MainFragment:Fragment() {
                     //Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     if(user?.isEmailVerified!!){
-                        /*Toast.makeText(requireContext(), "로그인 완료",
+                        viewModel.editUserPassword(password_edit_text.text.toString())
+                        Toast.makeText(requireContext(), "로그인 완료",
                             Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.homeFragment)*/
+                        //findNavController().navigate(R.id.homeFragment)
                     }
                     else{
                        /* Toast.makeText(requireContext(), "이메일 인증을 완료해주세요",

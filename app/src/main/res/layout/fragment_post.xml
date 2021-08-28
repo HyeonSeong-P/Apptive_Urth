@@ -8,74 +8,360 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#faf8f7"
         >
         <TextView
+            android:includeFontPadding="false"
+            android:layout_marginTop="54dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/user_name_text_in_post"
+            android:textColor="#3e3a39"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
+        <ImageButton
+            android:id="@+id/see_post_back_btn"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/back"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="15dp"
+            app:layout_constraintTop_toTopOf="@id/user_name_text_in_post"
+            app:layout_constraintBottom_toBottomOf="@id/user_name_text_in_post"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/post_user_image"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:src="@drawable/testimage"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            app:layout_constraintRight_toLeftOf="@id/post_menu_bar"
+            android:layout_marginRight="15dp"
+            app:layout_constraintTop_toTopOf="@id/user_name_text_in_post"
+            app:layout_constraintBottom_toBottomOf="@id/user_name_text_in_post"/>
+
+        <ImageButton
+            android:id="@+id/post_menu_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:src="@drawable/menu_icon"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="10dp"
+            app:layout_constraintTop_toTopOf="@id/post_user_image"
+            app:layout_constraintBottom_toBottomOf="@id/post_user_image"
+            android:visibility="gone"/>
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:background="#faf8f7">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/post_imageView"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view_for_image"
                 android:layout_width="0dp"
                 android:layout_height="450dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                >
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/see_post_photo_view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/photo_indicator_tab_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="4dp"
+                app:tabBackground="@drawable/pager_indicator_tab_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                app:tabIndicator="@null"
+                android:scrollIndicators="none"
+                app:tabPaddingStart="6dp"
+                app:tabPaddingEnd="6dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view_for_image"/>
+
+           <!-- <com.rd.PageIndicatorView
+                android:id="@+id/photo_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/card_view_for_image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:piv_viewPager="@id/see_post_photo_view_pager"
+                app:piv_radius="4dp"
+                app:piv_padding="6dp"
+                app:piv_selectedColor="#3e3a39"
+                app:piv_unselectedColor="#aaaaaa"
+                app:piv_dynamicCount="true"
+                app:piv_animationType="scale"/>-->
+
+
 
             <TextView
+                android:includeFontPadding="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/post_title_text"
-                app:layout_constraintTop_toBottomOf="@id/post_imageView"
-                app:layout_constraintLeft_toLeftOf="@id/post_imageView"
-                android:layout_marginTop="30dp"/>
+                android:textColor="#3e3a39"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/photo_indicator_tab_layout"
+                app:layout_constraintLeft_toLeftOf="@id/card_view_for_image"
+                android:layout_marginTop="20dp"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:includeFontPadding="false"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/post_body_text"
-                app:layout_constraintLeft_toLeftOf="@id/post_imageView"
+                android:textSize="14sp"
+                android:textColor="#707070"
+                app:layout_constraintLeft_toLeftOf="@id/card_view_for_image"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="15dp"
                 app:layout_constraintTop_toBottomOf="@id/post_title_text"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="5dp"/>
 
-            <ImageButton
-                android:id="@+id/post_heart_button"
+            <TextView
+                android:includeFontPadding="false"
+                android:id="@+id/post_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/post_imageView"
-                app:layout_constraintRight_toRightOf="@id/post_imageView"
+                android:textSize="14sp"
+                android:textColor="#c9c9c9"
+                app:layout_constraintTop_toBottomOf="@id/post_body_text"
+                android:layout_marginTop="7dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"/>
+
+            <HorizontalScrollView
+                android:id="@+id/horizontal_tag_view_detail_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                app:layout_constraintTop_toBottomOf="@id/post_time"
+                android:layout_marginTop="10dp"
+                android:scrollbars="none"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:includeFontPadding="false"
+                        android:id="@+id/begun_tag_btn_in_detail_post"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:textSize="12sp"
+                        android:textColor="#faf8f7"
+                        android:gravity="center"
+                        android:text="#비건소재"
+                        android:background="@drawable/selected_circle_image"/>
+
+                    <Button
+                        android:includeFontPadding="false"
+                        android:id="@+id/social_tag_btn_in_detail_post"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:visibility="gone"
+                        android:textSize="12sp"
+                        android:textColor="#faf8f7"
+                        android:gravity="center"
+                        android:text="#사회공헌/기부"
+                        android:background="@drawable/selected_circle_image"/>
+
+                    <Button
+                        android:includeFontPadding="false"
+                        android:id="@+id/up_tag_btn_in_detail_post"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="26dp"
+                        android:visibility="gone"
+                        android:textSize="12sp"
+                        android:textColor="#faf8f7"
+                        android:gravity="center"
+                        android:text="#업사이클링"
+                        android:background="@drawable/selected_circle_image"/>
+
+                    <Button
+                        android:includeFontPadding="false"
+                        android:id="@+id/eco_tag_btn_in_detail_post"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:visibility="gone"
+                        android:textSize="12sp"
+                        android:textColor="#faf8f7"
+                        android:gravity="center"
+                        android:text="#친환경소재"
+                        android:background="@drawable/selected_circle_image"/>
+
+                    <Button
+                        android:includeFontPadding="false"
+                        android:id="@+id/animal_tag_btn_in_detail_post"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:visibility="gone"
+                        android:textSize="12sp"
+                        android:textColor="#faf8f7"
+                        android:gravity="center"
+                        android:text="#동물복지"
+                        android:background="@drawable/selected_circle_image"/>
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+            <View
+                android:id="@+id/line_post_1"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="#e6e6e6"
+                app:layout_constraintTop_toBottomOf="@id/post_time"
+                android:layout_marginTop="86dp"/>
+
+
+
+            <ImageButton
+                android:id="@+id/post_heart_button_see_post"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintTop_toBottomOf="@id/photo_indicator_tab_layout"
+                android:layout_marginTop="26dp"
+                app:layout_constraintRight_toRightOf="@id/card_view_for_image"
                 android:src="@drawable/ic_baseline_favorite_border_24"
                 android:background="@android:color/transparent"/>
 
-            <EditText
-                android:id="@+id/edit_text_comment"
-                android:layout_width="200dp"
+            <TextView
+                android:includeFontPadding="false"
+                android:id="@+id/like_count"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/post_body_text"
-                app:layout_constraintLeft_toLeftOf="@id/post_body_text"/>
+                android:textSize="16sp"
+                android:textColor="#707070"
+                app:layout_constraintTop_toTopOf="@id/post_heart_button_see_post"
+                app:layout_constraintBottom_toBottomOf="@id/post_heart_button_see_post"
+                app:layout_constraintRight_toLeftOf="@id/post_heart_button_see_post"
+                android:layout_marginRight="6dp"/>
+
+            <TextView
+                android:includeFontPadding="false"
+                android:id="@+id/wearing_product_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#707070"
+                android:textStyle="bold"
+                android:text="착용 상품"
+                app:layout_constraintTop_toBottomOf="@id/line_post_1"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"/>
+            
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/horizontal_recyclerview_put_on_in_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                app:layout_constraintTop_toBottomOf="@id/wearing_product_text"
+                android:layout_marginTop="15dp"/>
+
+            <View
+                android:id="@+id/line_post_2"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="#e6e6e6"
+                app:layout_constraintTop_toBottomOf="@id/horizontal_recyclerview_put_on_in_post"
+                android:layout_marginTop="29dp"/>
+            <TextView
+                android:includeFontPadding="false"
+                android:id="@+id/comment_title_text_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#707070"
+                android:text="댓글"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintTop_toBottomOf="@id/line_post_2"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:includeFontPadding="false"
+                android:id="@+id/comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#707070"
+                app:layout_constraintLeft_toRightOf="@id/comment_title_text_post"
+                android:layout_marginLeft="6dp"
+                app:layout_constraintBottom_toBottomOf="@id/comment_title_text_post"/>
+
+
+
+            <EditText
+                android:includeFontPadding="false"
+                android:id="@+id/edit_text_comment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="댓글을 남겨주세요."
+                android:paddingLeft="10dp"
+                android:textColorHint="#80707070"
+                android:textSize="14sp"
+                android:background="@drawable/custom_edit"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="11dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="15dp"
+                app:layout_constraintTop_toBottomOf="@id/comment_title_text_post"
+                app:layout_constraintLeft_toLeftOf="@id/comment_title_text_post"/>
             <Button
+                android:includeFontPadding="false"
                 android:id="@+id/comment_register_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@+id/edit_text_comment"
+                app:layout_constraintRight_toRightOf="@+id/edit_text_comment"
                 android:text="등록"
+                android:textColor="#3e3a39"
                 android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@id/edit_text_comment"
                 app:layout_constraintTop_toTopOf="@id/edit_text_comment"/>
@@ -83,8 +369,12 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comment_recyclerview_post"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="200dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
                 app:layout_constraintTop_toBottomOf="@id/edit_text_comment"
                 android:layout_marginTop="30dp"
                 />

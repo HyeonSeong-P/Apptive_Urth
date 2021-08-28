@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#faf8f7"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:includeFontPadding="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3e3a39"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="설정"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="36dp"
+            android:id="@+id/setting_text"/>
+        <ImageButton
+            android:id="@+id/back_btn_setting"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/back"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="15dp"
+            app:layout_constraintTop_toTopOf="@id/setting_text"
+            app:layout_constraintBottom_toBottomOf="@id/setting_text"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#faf8f7"/>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#faf8f7">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/testimage"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="15dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/user_image_setting"/>
+
+            <ImageButton
+                android:id="@+id/edit_user_image_btn"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintRight_toRightOf="@id/user_image_setting"
+                app:layout_constraintBottom_toBottomOf="@id/user_image_setting"
+                android:src="@drawable/write_post"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                />
+
+            <TextView
+                android:includeFontPadding="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#3e3a39"
+                app:layout_constraintTop_toBottomOf="@id/user_image_setting"
+                android:layout_marginTop="25dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"
+                android:text="닉네임"
+                android:id="@+id/nickname_text_setting"/>
+
+            <EditText
+                android:includeFontPadding="false"
+                android:id="@+id/nickname_edit_text_setting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textColorHint="#80707070"
+                android:textSize="14sp"
+                android:background="@drawable/custom_edit"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintTop_toBottomOf="@id/nickname_text_setting"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <Button
+                android:includeFontPadding="false"
+                android:id="@+id/edit_nickname_btn_setting"
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:text="수정"
+                android:textSize="13sp"
+                android:textColor="#3e3a39"
+                android:background="@android:color/transparent"
+                app:layout_constraintRight_toRightOf="@id/nickname_edit_text_setting"
+                app:layout_constraintBottom_toBottomOf="@id/nickname_edit_text_setting"
+                app:layout_constraintTop_toTopOf="@id/nickname_edit_text_setting"/>
+
+            <TextView
+                android:includeFontPadding="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#3e3a39"
+                app:layout_constraintTop_toBottomOf="@id/nickname_edit_text_setting"
+                android:layout_marginTop="15dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"
+                android:text="이메일"
+                android:id="@+id/email_text_setting"/>
+
+            <TextView
+                android:includeFontPadding="false"
+                android:id="@+id/email_edit_text_setting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textColorHint="#3e3a39"
+                android:textSize="14sp"
+                android:background="@drawable/custom_edit"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintTop_toBottomOf="@id/email_text_setting"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <View
+                android:id="@+id/line_setting_1"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                app:layout_constraintTop_toBottomOf="@id/email_edit_text_setting"
+                android:layout_marginTop="25dp"
+                android:background="#e6e6e6"/>
+
+            <Button
+                android:includeFontPadding="false"
+                android:id="@+id/service_doc_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#3e3a39"
+                app:layout_constraintTop_toBottomOf="@id/line_setting_1"
+                android:layout_marginTop="18dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"
+                android:text="서비스 이용약관"
+                android:background="@android:color/transparent"/>
+
+            <Button
+                android:includeFontPadding="false"
+                android:id="@+id/personal_information_doc_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#3e3a39"
+                app:layout_constraintTop_toBottomOf="@id/service_doc_btn"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"
+                android:text="개인정보처리방침"
+                android:background="@android:color/transparent"/>
+
+            <View
+                android:id="@+id/line_setting_2"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                app:layout_constraintTop_toBottomOf="@id/personal_information_doc_btn"
+                android:layout_marginTop="18dp"
+                android:background="#e6e6e6"/>
+
+            <Button
+                android:includeFontPadding="false"
+                android:id="@+id/edit_password_btn_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#3e3a39"
+                android:textAlignment="textStart"
+                app:layout_constraintTop_toBottomOf="@id/line_setting_2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"
+                android:text="비밀번호 변경"
+                android:layout_marginTop="18dp"
+                android:background="@android:color/transparent"/>
+
+            <Button
+                android:includeFontPadding="false"
+                android:id="@+id/logout_btn_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#3e3a39"
+                android:textAlignment="textStart"
+                app:layout_constraintTop_toBottomOf="@id/edit_password_btn_setting"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"
+                android:text="로그아웃"
+                android:background="@android:color/transparent"/>
+
+            <Button
+                android:includeFontPadding="false"
+                android:id="@+id/exit_urth_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#a8a8a8"
+                android:textAlignment="textStart"
+                app:layout_constraintTop_toBottomOf="@id/logout_btn_setting"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"
+                android:text="회원탈퇴"
+                android:background="@android:color/transparent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

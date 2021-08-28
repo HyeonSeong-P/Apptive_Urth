@@ -16,4 +16,16 @@
         >
 
     </fragment>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:itemIconSize="20dp"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
+        android:background="#faf8f7"
+        app:menu="@menu/bottom_menu"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#faf8f7">
+    <TextView
+        android:includeFontPadding="false"
+        android:layout_marginTop="54dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/user_name_text_in_user_page"
+        android:textColor="#3e3a39"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/user_page_back_btn"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/back"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintTop_toTopOf="@id/user_name_text_in_user_page"
+        app:layout_constraintBottom_toBottomOf="@id/user_name_text_in_user_page"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_page_user_image"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:src="@drawable/testimage"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="17dp"
+        app:layout_constraintTop_toBottomOf="@id/user_page_back_btn"
+        android:layout_marginTop="16.5dp"/>
+
+
+    <ImageButton
+        android:id="@+id/go_to_setting_from_user_page_btn"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        app:layout_constraintRight_toRightOf="@id/user_page_user_image"
+        app:layout_constraintBottom_toBottomOf="@id/user_page_user_image"
+        android:src="@drawable/write_post"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        />
+    
+    <EditText
+        android:id="@+id/user_introduction_edit_text"
+        android:includeFontPadding="false"
+        android:layout_width="0dp"
+        android:layout_height="69dp"
+        android:textSize="14sp"
+        android:textColor="#707070"
+        android:hint="3줄 프로필을 작성해주세요:)"
+        app:layout_constraintLeft_toRightOf="@id/user_page_user_image"
+        android:layout_marginLeft="17dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textAlignment="textStart"
+        android:layout_marginRight="93dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="@id/user_page_user_image"
+
+        />
+
+    <Button
+        android:id="@+id/start_edit_introduction_btn"
+        android:includeFontPadding="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#3e3a39"
+        android:text="수정"
+        android:visibility="gone"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/user_introduction_edit_text"
+        app:layout_constraintBottom_toBottomOf="@id/user_introduction_edit_text"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@android:color/transparent"/>
+
+    <Button
+        android:id="@+id/complete_edit_introduction_btn"
+        android:includeFontPadding="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#3e3a39"
+        android:text="완료"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/user_introduction_edit_text"
+        app:layout_constraintBottom_toBottomOf="@id/user_introduction_edit_text"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@android:color/transparent"
+        android:visibility="gone"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/grid_recyclerview_user_page_post"
+        android:layout_width="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/user_page_user_image"
+        android:layout_marginTop="19dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

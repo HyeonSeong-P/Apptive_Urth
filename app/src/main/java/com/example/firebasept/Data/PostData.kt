@@ -4,7 +4,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 class PostData {
-    var imageUrl:MutableList<String> = mutableListOf<String>()
+    private var imageUrl:MutableList<String> = mutableListOf<String>()
     var title:String = ""
     var description:String = ""
     var uid:String = ""

@@ -102,13 +102,13 @@ class BrandProductViewModel(private val postDataRepository: PostDataRepository, 
             _productTagCategory.value = hashMapOf()
         }
         if ( _productTagCategory.value!!.containsKey(category)) {
-            var h = _productTagCategory.value
+            var h = _productTagCategory.value?:return
             h!!.remove(category)
-            _productTagCategory.setValue(h)
+            _productTagCategory.setValue(h!!)
         } else {
-            var h = _productTagCategory.value
+            var h = _productTagCategory.value?:return
             h!![category] = true
-            _productTagCategory.setValue(h)
+            _productTagCategory.setValue(h!!)
             Log.d("클릭","클릭됨2222!")
         }
     }
@@ -122,14 +122,14 @@ class BrandProductViewModel(private val postDataRepository: PostDataRepository, 
             if(!(_productTagCategory.value!!.containsKey(tagString))) allFlag = false
         }
         if(!allFlag){
-            var h = _productTagCategory.value
+            var h = _productTagCategory.value?:return
             for(tagString in categoryList){
                 h!![tagString] = true
             }
             _productTagCategory.setValue(h)
         }
         else{
-            var h = _productTagCategory.value
+            var h = _productTagCategory.value?:return
             h!!.clear()
             _productTagCategory.setValue(h)
         }
@@ -154,10 +154,10 @@ class BrandProductViewModel(private val postDataRepository: PostDataRepository, 
         }
 
         if(userPreferTags.isEmpty()) return listOf()
-        brandListWithTag = sortedList!!.filter{
+        brandListWithTag = sortedList!!.filter {
             var flag = false
-            for(tag in it.tagKeys){ // 유저가 선택한 태그 중 하나라도 가지고 있는 브랜드라면 필터링해 들고온다.
-                if(userPreferTags.containsKey(tag)){
+            for (tag in it.tagKeys) { // 유저가 선택한 태그 중 하나라도 가지고 있는 브랜드라면 필터링해 들고온다.
+                if (userPreferTags.containsKey(tag)) {
                     flag = true
                     break
                 }

@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class BrandProductViewModel(private val postDataRepository: PostDataRepository, private val userDataRepository: UserDataRepository
+internal class BrandProductViewModel(private val postDataRepository: PostDataRepository, private val userDataRepository: UserDataRepository
                             ,private val brandProductDataRepository: BrandProductDataRepository): ViewModel() {
 
     val categoryList = listOf<String>("#ALL","#아우터","#상의","#하의","#원피스","#신발","#가방","#기타")

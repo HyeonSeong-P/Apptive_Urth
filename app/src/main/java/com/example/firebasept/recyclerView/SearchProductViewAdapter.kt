@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 
-class SearchProductViewAdapter(private val viewModel: HomeViewModel):RecyclerView.Adapter<SearchProductViewHolder>() {
+internal class SearchProductViewAdapter(private val viewModel: HomeViewModel):RecyclerView.Adapter<SearchProductViewHolder>() {
 
     override fun getItemCount(): Int {
         return viewModel.getSearchProductData()!!.size

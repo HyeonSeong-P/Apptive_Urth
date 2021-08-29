@@ -21,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.bottom_sheet_sort.*
 import kotlinx.android.synthetic.main.bottom_sheet_sort_brand.*
 
-class BottomSheetBrand(sortName:String) : BottomSheetDialogFragment() {
+internal class BottomSheetBrand(sortName:String) : BottomSheetDialogFragment() {
     private val s = sortName
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore

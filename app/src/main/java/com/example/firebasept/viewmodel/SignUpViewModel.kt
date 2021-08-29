@@ -8,7 +8,7 @@ import com.example.firebasept.Model.PostDataRepository
 import com.example.firebasept.Model.UserDataRepository
 import com.example.firebasept.SingleLiveEvent
 
-class SignUpViewModel(private val userDataRepository: UserDataRepository): ViewModel() {
+internal class SignUpViewModel(private val userDataRepository: UserDataRepository): ViewModel() {
     private val _EmailCheck = SingleLiveEvent<Pair<Boolean,String>>()
     val EmailCheck get() = _EmailCheck
 

@@ -33,7 +33,7 @@ import kotlinx.android.synthetic.main.fragment_detail_brand.*
 import kotlinx.android.synthetic.main.fragment_detail_product.*
 import java.text.DecimalFormat
 
-class DetailProductFragment: Fragment() {
+internal class DetailProductFragment: Fragment() {
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
     lateinit var repository: PostDataRepository

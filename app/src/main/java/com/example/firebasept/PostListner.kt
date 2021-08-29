@@ -1,5 +1,5 @@
 package com.example.firebasept
 
-interface PostListner {
+internal interface PostListner {
     fun loadPage()
 }

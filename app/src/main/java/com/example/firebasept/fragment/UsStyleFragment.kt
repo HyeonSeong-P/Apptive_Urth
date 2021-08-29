@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_us_style.*
 
-class UsStyleFragment:Fragment(), PostListner {
+internal class UsStyleFragment:Fragment(), PostListner {
     lateinit var auth:FirebaseAuth
     lateinit var db:FirebaseFirestore
     lateinit var postList: MutableList<PostData>

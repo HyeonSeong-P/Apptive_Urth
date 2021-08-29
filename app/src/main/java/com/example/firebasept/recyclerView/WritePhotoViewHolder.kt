@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.write_post_photo_design.view.*
 
-class WritePhotoViewHolder(v:View):RecyclerView.ViewHolder(v) {
+internal class WritePhotoViewHolder(v:View):RecyclerView.ViewHolder(v) {
     var view: View = v
     fun bind(uri: String, position: Int){
         var price:String = ""

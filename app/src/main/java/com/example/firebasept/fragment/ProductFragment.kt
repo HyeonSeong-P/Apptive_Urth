@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_product.*
 
-class ProductFragment:Fragment() {
+internal class ProductFragment:Fragment() {
     val categoryList = arrayListOf<String>("#아우터","#상의","#하의","#원피스","#신발","#가방","#기타")
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore

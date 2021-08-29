@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 import java.text.DecimalFormat
 
-class MyPageProductViewHolder(v:View):RecyclerView.ViewHolder(v) {
+internal class MyPageProductViewHolder(v:View):RecyclerView.ViewHolder(v) {
     var view: View = v
     fun bind(productData: ProductData, position: Int){
         view.heart_button_product.visibility = View.GONE

@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_us_news.*
 
-class UsNewsFragment: Fragment() {
+internal class UsNewsFragment: Fragment() {
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
     lateinit var repository: PostDataRepository

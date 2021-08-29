@@ -15,7 +15,7 @@ import com.example.firebasept.viewmodel.HomeViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.major_product_design_for_view_pager2.view.*
 
-class HomeProductViewPagerAdapter(private val viewModel: HomeViewModel):
+internal class HomeProductViewPagerAdapter(private val viewModel: HomeViewModel):
     RecyclerView.Adapter<HomeProductViewPagerHolder>() {
 
     private var list = viewModel.getNewProductData()!!

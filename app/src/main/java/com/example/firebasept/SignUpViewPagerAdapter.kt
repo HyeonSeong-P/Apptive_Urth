@@ -8,7 +8,7 @@ import com.example.firebasept.fragment.SignUpEmailFragment
 import com.example.firebasept.fragment.SignUpNicknameFragment
 import com.example.firebasept.fragment.SignUpPasswordFragment
 
-class SignUpViewPagerAdapter (fm: FragmentManager, lifecycle: Lifecycle):
+internal class SignUpViewPagerAdapter (fm: FragmentManager, lifecycle: Lifecycle):
     FragmentStateAdapter(fm,lifecycle) {
     /*class ViewPagerAdapter(fm: Fragment):
         FragmentStateAdapter(fm) {*/

@@ -2,7 +2,7 @@ package com.example.firebasept.Data
 
 import java.io.Serializable
 
-class BrandData {
+internal class BrandData {
     var logoImage:String = ""
     var backgroundImage:String = ""
     var description:String = ""

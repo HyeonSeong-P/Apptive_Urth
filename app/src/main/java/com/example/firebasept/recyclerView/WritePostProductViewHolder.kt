@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.product_design.view.*
 import kotlinx.android.synthetic.main.write_post_product_design.view.*
 import java.text.DecimalFormat
 
-class WritePostProductViewHolder(v:View):RecyclerView.ViewHolder(v) {
+internal class WritePostProductViewHolder(v:View):RecyclerView.ViewHolder(v) {
     var view: View = v
     fun bind(productData: ProductData, position: Int){
         var price:String = ""

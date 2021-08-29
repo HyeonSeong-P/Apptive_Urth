@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 
-class MyPageProductViewAdapter(private val viewModel: MyPageViewModel):RecyclerView.Adapter<MyPageProductViewHolder>() {
+internal class MyPageProductViewAdapter(private val viewModel: MyPageViewModel):RecyclerView.Adapter<MyPageProductViewHolder>() {
 
     override fun getItemCount(): Int {
         return viewModel.getProductDataInMyPage()!!.size

@@ -9,7 +9,7 @@ import com.example.firebasept.fragment.ProductFragment
 import com.example.firebasept.fragment.SearchBrandFragment
 import com.example.firebasept.fragment.SearchProductFragment
 
-class SearchViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle):
+internal class SearchViewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle):
     FragmentStateAdapter(fm,lifecycle) {
     /*class ViewPagerAdapter(fm: Fragment):
         FragmentStateAdapter(fm) {*/

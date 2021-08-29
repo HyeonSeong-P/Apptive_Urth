@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
-class BrandProductDataRepository(private val db: FirebaseFirestore) {
+internal class BrandProductDataRepository(private val db: FirebaseFirestore) {
     private val mAuth = FirebaseAuth.getInstance()
     private var shareBrandList:MutableList<BrandData> = mutableListOf()
     private var shareProductList:MutableList<ProductData> = mutableListOf()

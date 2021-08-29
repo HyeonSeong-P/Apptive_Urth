@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_brand_product.*
 import kotlinx.android.synthetic.main.fragment_brand_product.tabLayout
 import kotlinx.android.synthetic.main.fragment_search.*
 
-class SearchBrandProductFragment:Fragment() {
+internal class SearchBrandProductFragment:Fragment() {
     private val tabTextList = arrayListOf("  브랜드  ", "    상품    ")
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore

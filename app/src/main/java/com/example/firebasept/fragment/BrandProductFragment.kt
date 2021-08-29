@@ -12,7 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_brand_product.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class BrandProductFragment:Fragment(){
+internal class BrandProductFragment:Fragment(){
     private val tabTextList = arrayListOf("  브랜드  ", "    상품    ")
     override fun onCreateView(
         inflater: LayoutInflater,

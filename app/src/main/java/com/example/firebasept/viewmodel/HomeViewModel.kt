@@ -13,7 +13,7 @@ import com.example.firebasept.Model.UserDataRepository
 import com.example.firebasept.SingleLiveEvent
 import com.google.firebase.auth.FirebaseAuth
 
-class HomeViewModel(private val postDataRepository: PostDataRepository, private val userDataRepository: UserDataRepository
+internal class HomeViewModel(private val postDataRepository: PostDataRepository, private val userDataRepository: UserDataRepository
                             ,private val brandProductDataRepository: BrandProductDataRepository): ViewModel() {
 
     val categoryList = listOf<String>("#ALL", "#아우터", "#상의", "#하의", "#원피스", "#신발", "#가방", "#기타")

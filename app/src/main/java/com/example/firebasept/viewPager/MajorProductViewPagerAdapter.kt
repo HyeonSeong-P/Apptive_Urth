@@ -15,7 +15,7 @@ import com.example.firebasept.viewmodel.HomeViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.major_product_design_for_view_pager2.view.*
 
-class MajorProductViewPagerAdapter(private val viewModel: BrandProductViewModel,private val brandName:String):
+internal class MajorProductViewPagerAdapter(private val viewModel: BrandProductViewModel,private val brandName:String):
     RecyclerView.Adapter<HomeProductViewPagerHolder>() {
 
     override fun getItemCount(): Int {

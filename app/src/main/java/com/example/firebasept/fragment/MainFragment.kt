@@ -28,7 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_main.*
 
 
-class MainFragment:Fragment() {
+internal class MainFragment:Fragment() {
 
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
@@ -112,7 +112,7 @@ class MainFragment:Fragment() {
                     //Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     if(user?.isEmailVerified!!){
-                        viewModel.editUserPassword(password_edit_text.text.toString())
+                        viewModel.editUserPassword(password)
                         Toast.makeText(requireContext(), "로그인 완료",
                             Toast.LENGTH_SHORT).show()
                         //findNavController().navigate(R.id.homeFragment)

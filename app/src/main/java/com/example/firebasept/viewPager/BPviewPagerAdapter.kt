@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firebasept.fragment.BrandFragment
 import com.example.firebasept.fragment.ProductFragment
 
-class BPviewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle):
+internal class BPviewPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle):
     FragmentStateAdapter(fm,lifecycle) {
     /*class ViewPagerAdapter(fm: Fragment):
         FragmentStateAdapter(fm) {*/

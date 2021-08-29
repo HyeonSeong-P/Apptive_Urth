@@ -8,7 +8,7 @@ import com.example.firebasept.viewmodel.UsStyleViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.comment_design.view.*
 
-class CommentViewHolder(v: View): RecyclerView.ViewHolder(v) {
+internal class CommentViewHolder(v: View): RecyclerView.ViewHolder(v) {
     val auth = FirebaseAuth.getInstance()
     var view: View = v
     fun bind(postDTO: PostData, position: Int,viewModel: UsStyleViewModel){

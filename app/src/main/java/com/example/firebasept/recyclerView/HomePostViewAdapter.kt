@@ -11,7 +11,7 @@ import com.example.firebasept.viewmodel.UsStyleViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.post_design.view.*
 
-class HomePostViewAdapter(private val viewModel: HomeViewModel):RecyclerView.Adapter<HomePostViewHolder>() {
+internal class HomePostViewAdapter(private val viewModel: HomeViewModel):RecyclerView.Adapter<HomePostViewHolder>() {
 
     override fun getItemCount(): Int {
         return viewModel.getBestPostData()!!.size

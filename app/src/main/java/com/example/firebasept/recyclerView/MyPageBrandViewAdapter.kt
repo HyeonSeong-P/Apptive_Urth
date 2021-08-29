@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.brand_design.view.*
 import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 
-class MyPageBrandViewAdapter(private val viewModel: MyPageViewModel):RecyclerView.Adapter<MyPageBrandViewHolder>() {
+internal class MyPageBrandViewAdapter(private val viewModel: MyPageViewModel):RecyclerView.Adapter<MyPageBrandViewHolder>() {
 
     override fun getItemCount(): Int {
         return viewModel.getBrandDataInMyPage()!!.size

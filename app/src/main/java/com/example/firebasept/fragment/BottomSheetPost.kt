@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.bottom_sheet_post_menu.*
 import kotlinx.android.synthetic.main.fragment_write_post.*
 
-class BottomSheetPost: BottomSheetDialogFragment() {
+internal class BottomSheetPost: BottomSheetDialogFragment() {
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
     lateinit var postList: MutableList<PostData>

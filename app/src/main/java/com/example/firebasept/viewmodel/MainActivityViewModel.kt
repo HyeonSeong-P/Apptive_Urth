@@ -11,7 +11,7 @@ import com.example.firebasept.Model.PostDataRepository
 import com.example.firebasept.Model.UserDataRepository
 import com.google.firebase.auth.FirebaseAuth
 
-class MainActivityViewModel(private val postDataRepository: PostDataRepository, private val userDataRepository: UserDataRepository
+internal class MainActivityViewModel(private val postDataRepository: PostDataRepository, private val userDataRepository: UserDataRepository
 ,private val brandProductDataRepository: BrandProductDataRepository): ViewModel() {
     var auth = FirebaseAuth.getInstance()
     //var allPostData: LiveData<List<PostDTO>> = foodDataRepository.getAllData()

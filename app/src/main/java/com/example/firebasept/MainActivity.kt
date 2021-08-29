@@ -47,7 +47,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainActivity : AppCompatActivity(){
+internal class MainActivity : AppCompatActivity(){
     lateinit var menu:Menu
     private lateinit var mAuthStateListener: FirebaseAuth.AuthStateListener
     // [START declare_auth]

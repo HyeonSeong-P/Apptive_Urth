@@ -12,7 +12,7 @@ import com.example.firebasept.Model.UserDataRepository
 import com.example.firebasept.SingleLiveEvent
 import com.google.firebase.auth.FirebaseAuth
 
-class MyPageViewModel(private val postDataRepository: PostDataRepository,private val userDataRepository: UserDataRepository
+internal class MyPageViewModel(private val postDataRepository: PostDataRepository,private val userDataRepository: UserDataRepository
                       , private val brandProductDataRepository: BrandProductDataRepository
 ): ViewModel(){
 

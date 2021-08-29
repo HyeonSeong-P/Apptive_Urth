@@ -10,7 +10,7 @@ import com.example.firebasept.viewmodel.HomeViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.major_product_design_for_view_pager2.view.*
 
-class SeePostViewPagerAdapter(private val list: List<String>):
+internal class SeePostViewPagerAdapter(private val list: List<String>):
     RecyclerView.Adapter<SeePostViewPagerHolder>() {
 
     override fun getItemCount(): Int {

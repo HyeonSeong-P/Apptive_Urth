@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 
-class PutOnProductInPostViewAdapter(private val viewModel: UsStyleViewModel,private val list:List<ProductData>):RecyclerView.Adapter<PutOnProductInPostViewHolder>() {
+internal class PutOnProductInPostViewAdapter(private val viewModel: UsStyleViewModel,private val list:List<ProductData>):RecyclerView.Adapter<PutOnProductInPostViewHolder>() {
 
     override fun getItemCount(): Int {
         return viewModel.getPutOnProductData(list)!!.size

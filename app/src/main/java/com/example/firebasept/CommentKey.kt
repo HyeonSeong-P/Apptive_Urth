@@ -1,6 +1,6 @@
 package com.example.firebasept
 
-class CommentKey(email: String = "", time: String = "") {
+internal class CommentKey(email: String = "", time: String = "") {
     var timeStamp:String = ""
     var nickname:String = ""
     init{

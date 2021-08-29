@@ -6,7 +6,7 @@ import com.example.firebasept.Model.BrandProductDataRepository
 import com.example.firebasept.Model.PostDataRepository
 import com.example.firebasept.Model.UserDataRepository
 
-class MyPageViewModelFactory(private val postDataRepository: PostDataRepository, private val userDataRepository: UserDataRepository
+internal class MyPageViewModelFactory(private val postDataRepository: PostDataRepository, private val userDataRepository: UserDataRepository
                              , private val brandProductDataRepository: BrandProductDataRepository
 ):
     ViewModelProvider.Factory {

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.firebasept.R
 import com.google.firebase.auth.FirebaseAuth
 
-class WritePhotoViewAdapter(private val list: List<String>):RecyclerView.Adapter<WritePhotoViewHolder>() {
+internal class WritePhotoViewAdapter(private val list: List<String>):RecyclerView.Adapter<WritePhotoViewHolder>() {
 
     override fun getItemCount(): Int {
         return list!!.size

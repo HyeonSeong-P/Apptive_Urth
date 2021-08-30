@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 
-class MoreNewProductViewAdapter(private val viewModel: HomeViewModel):RecyclerView.Adapter<MoreNewProductViewHolder>() {
+internal class MoreNewProductViewAdapter(private val viewModel: HomeViewModel):RecyclerView.Adapter<MoreNewProductViewHolder>() {
 
     private val TYPE_BRAND_NAME = 1
     private val TYPE_PRODUCT = 0

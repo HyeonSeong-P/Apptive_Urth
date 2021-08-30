@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.fragment_sign_up_email.*
 import kotlinx.android.synthetic.main.fragment_sign_up_nick_name.*
 import kotlinx.android.synthetic.main.fragment_sign_up_password.*
 
-class SignUpBaseFragment: Fragment() {
+internal class SignUpBaseFragment: Fragment() {
     var emailString: String = ""
     var passwordString: String = ""
     var nicknameString: String = ""

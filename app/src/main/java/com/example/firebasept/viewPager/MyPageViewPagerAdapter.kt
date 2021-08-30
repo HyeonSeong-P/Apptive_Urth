@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firebasept.fragment.*
 
-class MyPageViewPagerAdapter (fm: FragmentManager, lifecycle: Lifecycle):
+internal class MyPageViewPagerAdapter (fm: FragmentManager, lifecycle: Lifecycle):
     FragmentStateAdapter(fm,lifecycle) {
     /*class ViewPagerAdapter(fm: Fragment):
         FragmentStateAdapter(fm) {*/

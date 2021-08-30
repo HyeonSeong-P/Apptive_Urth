@@ -7,7 +7,7 @@ import com.example.firebasept.Model.PostDataRepository
 import com.example.firebasept.Model.UserDataRepository
 import com.google.firebase.firestore.FirebaseFirestore
 
-class UsStyleViewModelFactory(private val postDataRepository: PostDataRepository,private val userDataRepository: UserDataRepository
+internal class UsStyleViewModelFactory(private val postDataRepository: PostDataRepository,private val userDataRepository: UserDataRepository
                               , private val brandProductDataRepository: BrandProductDataRepository
 ):ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 import kotlinx.android.synthetic.main.select_put_on_product_design.view.*
 
-class SearchPutOnProductViewAdapter(private val viewModel: UsStyleViewModel):RecyclerView.Adapter<SearchPutOnProductViewHolder>() {
+internal class SearchPutOnProductViewAdapter(private val viewModel: UsStyleViewModel):RecyclerView.Adapter<SearchPutOnProductViewHolder>() {
 
     companion object{
         //체크박스를 유지하기 위한 방법쓰

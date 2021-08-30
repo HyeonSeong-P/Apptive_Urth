@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.brand_design.view.*
 import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.urth_news_design.view.*
 
-class CampaignViewHolder(v:View):RecyclerView.ViewHolder(v) {
+internal class CampaignViewHolder(v:View):RecyclerView.ViewHolder(v) {
     var view: View = v
     fun bind(campaignData: CampaignData, position: Int){
         //var f: File? = File(postDTO.imageUrl)

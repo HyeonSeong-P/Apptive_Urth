@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_more_new_product.*
 
-class MoreNewProductFragment:Fragment() {
+internal class MoreNewProductFragment:Fragment() {
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
     lateinit var repository: PostDataRepository

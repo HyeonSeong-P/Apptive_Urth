@@ -20,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_sign_up_email.*
 import kotlinx.android.synthetic.main.fragment_sign_up_password.*
 
-class SignUpPasswordFragment:Fragment() {
+internal class SignUpPasswordFragment:Fragment() {
     lateinit var db: FirebaseFirestore
     lateinit var repository: UserDataRepository
     lateinit var factory: SignUpViewModelFactory

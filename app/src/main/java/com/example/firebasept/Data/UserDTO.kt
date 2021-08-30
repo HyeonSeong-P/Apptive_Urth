@@ -2,7 +2,7 @@ package com.example.firebasept.Data
 
 import java.io.Serializable
 
-class UserDTO {
+internal class UserDTO {
     var userImage:String = ""
     var userEmail:String = ""
     var password:String = ""
@@ -22,6 +22,18 @@ class UserDTO {
     var tags = hashMapOf<String,Boolean>()
 
     var userIntroduction:String = ""
+
+    /*fun setUserImage(string: String){
+        userImage = string
+    }
+
+    fun setUserEmail(string: String){
+        userEmail = string
+    }
+
+    fun setPassword(string: String){
+        password = string
+    }*/
 
     
 }

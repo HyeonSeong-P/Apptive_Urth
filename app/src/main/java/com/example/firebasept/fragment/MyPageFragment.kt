@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.fragment_brand_product.*
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_user_page.*
 
-class MyPageFragment:Fragment() {
+internal class MyPageFragment:Fragment() {
     private val tabTextList = arrayListOf("  브랜드  ", "    상품    ","  게시글  ")
     private val tagList = arrayListOf<String>("#비건소재","#사회공헌/기부","#업사이클링","#친환경소재","#동물복지")
     lateinit var auth:FirebaseAuth

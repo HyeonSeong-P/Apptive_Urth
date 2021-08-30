@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 import kotlinx.android.synthetic.main.urth_news_design.view.*
 
-class CampaignViewAdapter(private val viewModel: BrandProductViewModel):RecyclerView.Adapter<CampaignViewHolder>() {
+internal class CampaignViewAdapter(private val viewModel: BrandProductViewModel):RecyclerView.Adapter<CampaignViewHolder>() {
 
     override fun getItemCount(): Int {
         return viewModel.getCampaignData()!!.size

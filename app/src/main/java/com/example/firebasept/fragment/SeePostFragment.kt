@@ -45,7 +45,7 @@ import kotlinx.android.synthetic.main.see_post_photo_design.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SeePostFragment:Fragment(), PostListner {
+internal class SeePostFragment:Fragment(), PostListner {
     private val tagList = arrayListOf<String>("#비건소재","#사회공헌/기부","#업사이클링","#친환경소재","#동물복지")
     var position = 0
     var clickState:Boolean = false

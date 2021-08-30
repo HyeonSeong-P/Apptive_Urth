@@ -46,7 +46,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SettingFragment: Fragment() {
+internal class SettingFragment: Fragment() {
 
     lateinit var stor:FirebaseStorage
     lateinit var auth: FirebaseAuth

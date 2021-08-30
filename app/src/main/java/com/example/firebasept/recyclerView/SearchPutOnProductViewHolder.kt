@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.product_design.view.*
 import kotlinx.android.synthetic.main.select_put_on_product_design.view.*
 import java.text.DecimalFormat
 
-class SearchPutOnProductViewHolder(v:View):RecyclerView.ViewHolder(v) {
+internal class SearchPutOnProductViewHolder(v:View):RecyclerView.ViewHolder(v) {
     var view: View = v
     fun bind(productData: ProductData, position: Int, boolean: Boolean){
 

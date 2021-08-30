@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 import kotlinx.android.synthetic.main.search_brand_design.view.*
 
-class SearchBrandViewAdapter(private val viewModel: HomeViewModel):RecyclerView.Adapter<SearchBrandViewHolder>() {
+internal class SearchBrandViewAdapter(private val viewModel: HomeViewModel):RecyclerView.Adapter<SearchBrandViewHolder>() {
 
     override fun getItemCount(): Int {
         return viewModel.getSearchBrandData()!!.size

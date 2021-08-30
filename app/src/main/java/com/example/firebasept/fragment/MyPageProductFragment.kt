@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_my_page_product.*
 
-class MyPageProductFragment: Fragment() {
+internal class MyPageProductFragment: Fragment() {
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
     lateinit var postList: MutableList<PostData>

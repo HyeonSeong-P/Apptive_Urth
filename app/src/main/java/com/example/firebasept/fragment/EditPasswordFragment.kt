@@ -20,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_edit_password.*
 import kotlinx.android.synthetic.main.fragment_setting.*
 
-class EditPasswordFragment: Fragment(){
+internal class EditPasswordFragment: Fragment(){
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
     lateinit var repository: PostDataRepository

@@ -3,7 +3,7 @@ package com.example.firebasept.Data
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-class PostData {
+internal class PostData {
     var imageUrl:MutableList<String> = mutableListOf<String>()
     var title:String = ""
     var description:String = ""

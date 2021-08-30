@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_brand.*
 
-class BrandFragment:Fragment() {
+internal class BrandFragment:Fragment() {
     private val tagList = arrayListOf<String>("#비건소재","#사회공헌/기부","#업사이클링","#친환경소재","#동물복지")
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore

@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 
-class ProductViewAdapter(private val viewModel: BrandProductViewModel):RecyclerView.Adapter<ProductViewHolder>() {
+internal class ProductViewAdapter(private val viewModel: BrandProductViewModel):RecyclerView.Adapter<ProductViewHolder>() {
     private val TYPE_PROGRESS = 1
     private val TYPE_PRODUCT = 0
 

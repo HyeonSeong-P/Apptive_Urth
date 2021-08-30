@@ -40,7 +40,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-class WritePostFragment: Fragment() {
+internal class WritePostFragment: Fragment() {
     private val tagList = arrayListOf<String>("#비건소재","#사회공헌/기부","#업사이클링","#친환경소재","#동물복지")
     private var tagButtonState = arrayListOf<Boolean>(false,false,false,false,false)
     private var postTags = mutableListOf<String>()

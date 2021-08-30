@@ -12,7 +12,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class PostDataRepository(private val db: FirebaseFirestore) {
+internal class PostDataRepository(private val db: FirebaseFirestore) {
     private val mAuth = FirebaseAuth.getInstance()
     private var sharePostList:MutableList<PostData> = mutableListOf()
     //lateinit var db:FirebaseFirestore

@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 
-class MajorProductViewAdapter(private val viewModel: BrandProductViewModel,private val brandName:String):RecyclerView.Adapter<MajorProductViewHolder>() {
+internal class MajorProductViewAdapter(private val viewModel: BrandProductViewModel,private val brandName:String):RecyclerView.Adapter<MajorProductViewHolder>() {
 
     override fun getItemCount(): Int {
         return viewModel.getMajorProductData(brandName)!!.size

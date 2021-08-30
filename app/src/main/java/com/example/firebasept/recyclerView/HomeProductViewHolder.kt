@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 import java.text.DecimalFormat
 
-class HomeProductViewHolder(v:View):RecyclerView.ViewHolder(v) {
+internal class HomeProductViewHolder(v:View):RecyclerView.ViewHolder(v) {
     var view: View = v
 
     fun bind(productData: ProductData, position: Int, newProductSize:Int){

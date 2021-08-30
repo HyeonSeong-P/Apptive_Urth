@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_search_brand.*
 
-class SearchBrandFragment: Fragment() {
+internal class SearchBrandFragment: Fragment() {
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore
     lateinit var repository: PostDataRepository

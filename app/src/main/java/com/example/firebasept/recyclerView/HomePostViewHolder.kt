@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import com.example.firebasept.Data.PostData
 import kotlinx.android.synthetic.main.post_design.view.*
 
-class HomePostViewHolder(v:View):RecyclerView.ViewHolder(v) {
+internal class HomePostViewHolder(v:View):RecyclerView.ViewHolder(v) {
     var view: View = v
     fun bind(postDTO: PostData, position: Int){
         //var f: File? = File(postDTO.imageUrl)

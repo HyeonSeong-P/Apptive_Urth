@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.comment_design.view.*
 import kotlinx.android.synthetic.main.post_design.view.*
 
-class CommentViewAdapter(private val viewModel: UsStyleViewModel, private val postUid: String, private val postTimeStamp:String): RecyclerView.Adapter<CommentViewHolder>() {
+internal class CommentViewAdapter(private val viewModel: UsStyleViewModel, private val postUid: String, private val postTimeStamp:String): RecyclerView.Adapter<CommentViewHolder>() {
     override fun getItemCount(): Int {
         //Log.d("개수",viewModel.getPost!!.commentCount.toString())
         return viewModel.searchPostData(postUid,postTimeStamp)!!.commentCount

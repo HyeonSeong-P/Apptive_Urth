@@ -1,6 +1,6 @@
 package com.example.firebasept.Data
 
-class CampaignData {
+internal class CampaignData {
     var brandName:String = ""
     var link:String = ""
     var imgUrl:String = ""

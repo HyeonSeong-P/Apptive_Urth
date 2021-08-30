@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.post_design.view.*
 import kotlinx.android.synthetic.main.product_design.view.*
 
-class WritePostProductViewAdapter(private val list: List<ProductData>):RecyclerView.Adapter<WritePostProductViewHolder>() {
+internal class WritePostProductViewAdapter(private val list: List<ProductData>):RecyclerView.Adapter<WritePostProductViewHolder>() {
 
     override fun getItemCount(): Int {
         return list!!.size

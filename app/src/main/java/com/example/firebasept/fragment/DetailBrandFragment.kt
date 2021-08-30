@@ -37,7 +37,7 @@ import kotlinx.android.synthetic.main.fragment_detail_product.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
-class DetailBrandFragment: Fragment() {
+internal class DetailBrandFragment: Fragment() {
     private val tagList = arrayListOf<String>("#비건소재","#사회공헌/기부","#업사이클링","#친환경소재","#동물복지")
     lateinit var auth: FirebaseAuth
     lateinit var db: FirebaseFirestore

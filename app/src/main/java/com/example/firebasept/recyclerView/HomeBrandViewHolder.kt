@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.best_brand_design.view.*
 import kotlinx.android.synthetic.main.brand_design.view.*
 import kotlinx.android.synthetic.main.post_design.view.*
 
-class HomeBrandViewHolder(v:View):RecyclerView.ViewHolder(v) {
+internal class HomeBrandViewHolder(v:View):RecyclerView.ViewHolder(v) {
     var view: View = v
     fun bind(brandDTO: BrandData, position: Int){
         //var f: File? = File(postDTO.imageUrl)

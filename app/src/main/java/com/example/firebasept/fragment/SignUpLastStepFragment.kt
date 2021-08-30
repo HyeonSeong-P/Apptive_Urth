@@ -22,7 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.bottom_sheet_init_tag.*
 import kotlinx.android.synthetic.main.fragment_write_post.*
 
-class SignUpLastStepFragment:Fragment() {
+internal class SignUpLastStepFragment:Fragment() {
     private var clickState:ArrayList<Boolean> = arrayListOf(false,false,false,false,false)
     private val tagList = arrayListOf<String>("#비건소재","#사회공헌/기부","#업사이클링","#친환경소재","#동물복지")
     private var userTagList = hashMapOf<String,Boolean>()

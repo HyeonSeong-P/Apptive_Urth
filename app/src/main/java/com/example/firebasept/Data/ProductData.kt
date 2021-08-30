@@ -2,7 +2,7 @@ package com.example.firebasept.Data
 
 import java.io.Serializable
 
-class ProductData {
+internal class ProductData {
 
     var imageUrl:String = ""
     var purchaseLink:String = ""

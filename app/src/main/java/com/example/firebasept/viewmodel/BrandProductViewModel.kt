@@ -15,18 +15,19 @@ import kotlinx.coroutines.launch
 internal class BrandProductViewModel(private val postDataRepository: PostDataRepository, private val userDataRepository: UserDataRepository
                             ,private val brandProductDataRepository: BrandProductDataRepository): ViewModel() {
 
-    val categoryList = listOf<String>("#ALL","#아우터","#상의","#하의","#원피스","#신발","#가방","#기타")
+    val categoryList = listOf<String>("#ALL", "#아우터", "#상의", "#하의", "#원피스", "#신발", "#가방", "#기타")
     var auth = FirebaseAuth.getInstance()
+
     //var allPostData: LiveData<List<PostDTO>> = foodDataRepository.getAllData()
     var allPostData: LiveData<List<PostData>> = postDataRepository.getAll()   // 파이어 스토어에서 데이터 들고오기
     var allUserData: LiveData<List<UserDTO>> = userDataRepository.getAll()
 
-    fun getUser(uid:String): UserDTO? {
+    fun getUser(uid: String): UserDTO? {
         return userDataRepository.getUserDTO(uid)
     }
 
-    fun getProduct(productName:String,brandName: String): ProductData? {
-        return brandProductDataRepository.getProduct(productName,brandName)
+    fun getProduct(productName: String, brandName: String): ProductData? {
+        return brandProductDataRepository.getProduct(productName, brandName)
     }
 
     fun getBrand(brandName: String): BrandData? {
@@ -41,14 +42,14 @@ internal class BrandProductViewModel(private val postDataRepository: PostDataRep
     private val _campaignWebSite = SingleLiveEvent<String>()
     val campaignWebSite: LiveData<String> get() = _campaignWebSite
 
-    fun setCampaignWebSite(string: String){
+    fun setCampaignWebSite(string: String) {
         _campaignWebSite.setValue(string)
     }
 
     private val _productDataForDetail = SingleLiveEvent<ProductData>()
     val productDataForDetail: LiveData<ProductData> get() = _productDataForDetail
 
-    fun setProductDataForDetail(PRD:ProductData){
+    fun setProductDataForDetail(PRD: ProductData) {
         _productDataForDetail.setValue(PRD)
     }
 
@@ -56,7 +57,7 @@ internal class BrandProductViewModel(private val postDataRepository: PostDataRep
     private val _brandDataForDetail = SingleLiveEvent<BrandData>()
     val brandDataForDetail: LiveData<BrandData> get() = _brandDataForDetail
 
-    fun setBrandDataForDetail(BD:BrandData){
+    fun setBrandDataForDetail(BD: BrandData) {
         _brandDataForDetail.setValue(BD)
     }
 
@@ -64,11 +65,11 @@ internal class BrandProductViewModel(private val postDataRepository: PostDataRep
     private val _sortDataBrand = SingleLiveEvent<Int>() // 정렬 관련 라이브 데이터
     val sortDataBrand: LiveData<Int> get() = _sortDataBrand
 
-    fun initSortDataBrand(){
+    fun initSortDataBrand() {
         _sortDataBrand.setValue(1)
     }
 
-    fun setSortDataBrand(i:Int){
+    fun setSortDataBrand(i: Int) {
         _sortDataBrand.setValue(i)
     }
 
@@ -76,11 +77,11 @@ internal class BrandProductViewModel(private val postDataRepository: PostDataRep
     private val _sortDataProduct = SingleLiveEvent<Int>() // 정렬 관련 라이브 데이터
     val sortDataProduct: LiveData<Int> get() = _sortDataProduct
 
-    fun initSortDataProduct(){
+    fun initSortDataProduct() {
         _sortDataProduct.setValue(1)
     }
 
-    fun setSortDataProduct(i:Int){
+    fun setSortDataProduct(i: Int) {
         _sortDataProduct.setValue(i)
     }
 
@@ -88,48 +89,47 @@ internal class BrandProductViewModel(private val postDataRepository: PostDataRep
     private val _changedProductPosition = SingleLiveEvent<Int>() // 정렬 관련 라이브 데이터
     val changedProductPosition: LiveData<Int> get() = _changedProductPosition
 
-    fun setChangedProductPosition(position:Int){
+    fun setChangedProductPosition(position: Int) {
         _changedProductPosition.setValue(position)
     }
 
     //상품 카테고리 변수
-    private val _productTagCategory = SingleLiveEvent<HashMap<String,Boolean>>() // 정렬 관련 라이브 데이터
-    val productTagCategory: LiveData<HashMap<String,Boolean>> get() = _productTagCategory
+    private val _productTagCategory = SingleLiveEvent<HashMap<String, Boolean>>() // 정렬 관련 라이브 데이터
+    val productTagCategory: LiveData<HashMap<String, Boolean>> get() = _productTagCategory
 
-    fun setProductCategory(category: String){
-        Log.d("클릭","클릭됨!")
-        if(_productTagCategory.value == null){
+    fun setProductCategory(category: String) {
+        Log.d("클릭", "클릭됨!")
+        if (_productTagCategory.value == null) {
             _productTagCategory.value = hashMapOf()
         }
-        if ( _productTagCategory.value!!.containsKey(category)) {
-            var h = _productTagCategory.value
+        if (_productTagCategory.value!!.containsKey(category)) {
+            var h = _productTagCategory.value ?: return
             h!!.remove(category)
             _productTagCategory.setValue(h)
         } else {
-            var h = _productTagCategory.value
+            var h = _productTagCategory.value ?: return
             h!![category] = true
             _productTagCategory.setValue(h)
-            Log.d("클릭","클릭됨2222!")
+            Log.d("클릭", "클릭됨2222!")
         }
     }
 
-    fun setProductAllCategory(){
-        if(_productTagCategory.value == null){
+    fun setProductAllCategory() {
+        if (_productTagCategory.value == null) {
             _productTagCategory.value = hashMapOf()
         }
-        var allFlag:Boolean = true
-        for(tagString in categoryList){
-            if(!(_productTagCategory.value!!.containsKey(tagString))) allFlag = false
+        var allFlag: Boolean = true
+        for (tagString in categoryList) {
+            if (!(_productTagCategory.value!!.containsKey(tagString))) allFlag = false
         }
-        if(!allFlag){
-            var h = _productTagCategory.value
-            for(tagString in categoryList){
+        if (!allFlag) {
+            var h = _productTagCategory.value ?: return
+            for (tagString in categoryList) {
                 h!![tagString] = true
             }
             _productTagCategory.setValue(h)
-        }
-        else{
-            var h = _productTagCategory.value
+        } else {
+            var h = _productTagCategory.value ?: return
             h!!.clear()
             _productTagCategory.setValue(h)
         }

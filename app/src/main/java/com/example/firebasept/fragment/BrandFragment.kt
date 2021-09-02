@@ -64,21 +64,7 @@ internal class BrandFragment:Fragment() {
 
         viewModel.allBrandData.observe(viewLifecycleOwner, Observer {
             //콜백 안써도 그냥 라이브데이터 감지로 해도 되네?.. 로직은 비슷하긴 하니까 뭐..
-            grid_recyclerview_brand.adapter = adapter
-            val gridLayoutManager = GridLayoutManager(activity, 2)
-            grid_recyclerview_brand.layoutManager = gridLayoutManager
-            if(itemDeco != null)
-                grid_recyclerview_brand.removeItemDecoration(itemDeco)
-            grid_recyclerview_brand.addItemDecoration(itemDeco)
-            (grid_recyclerview_brand.adapter as BrandViewAdapter).setItemClickListener(object:
-                BrandViewAdapter.OnItemClickListener{
-                override fun onClick(v: View, position: Int) {
-                    //Log.d("클릭","됐어??")
-                    val BD = viewModel.getBrandData()!![position]
-                    viewModel.setBrandDataForDetail(BD)
-                    findNavController().navigate(R.id.detailBrandFragment)
-                }
-            })
+            setRecyclerView()
 
             if(!recyclerViewFlag){
                 recyclerViewFlag =true
@@ -234,5 +220,23 @@ internal class BrandFragment:Fragment() {
         animal_tag_btn_in_brand.setOnClickListener {
             viewModel.clickTag(4)
         }
+    }
+
+    fun setRecyclerView(){
+        grid_recyclerview_brand.adapter = adapter
+        val gridLayoutManager = GridLayoutManager(activity, 2)
+        grid_recyclerview_brand.layoutManager = gridLayoutManager
+        if(itemDeco != null)
+            grid_recyclerview_brand.removeItemDecoration(itemDeco)
+        grid_recyclerview_brand.addItemDecoration(itemDeco)
+        (grid_recyclerview_brand.adapter as BrandViewAdapter).setItemClickListener(object:
+            BrandViewAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                //Log.d("클릭","됐어??")
+                val BD = viewModel.getBrandData()!![position]
+                viewModel.setBrandDataForDetail(BD)
+                findNavController().navigate(R.id.detailBrandFragment)
+            }
+        })
     }
 }

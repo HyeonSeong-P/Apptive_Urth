@@ -97,7 +97,6 @@ internal class DetailProductFragment: Fragment() {
 
             }
             else{
-                Log.d("반응왔냐???????????????","d왔음")
                 adapter.notifyDataSetChanged()
             }
 

@@ -77,29 +77,27 @@ internal class MyPageBrandFragment: Fragment() {
         })
         viewModel.allBrandData.observe(viewLifecycleOwner, Observer {
             //콜백 안써도 그냥 라이브데이터 감지로 해도 되네?.. 로직은 비슷하긴 하니까 뭐..
+            setRecyclerview()
 
-            grid_recyclerview_brand_my_page.adapter = adapter
-            val gridLayoutManager = GridLayoutManager(activity, 4)
-            grid_recyclerview_brand_my_page.layoutManager = gridLayoutManager
-            if(itemDeco != null)
-                grid_recyclerview_brand_my_page.removeItemDecoration(itemDeco)
-            grid_recyclerview_brand_my_page.addItemDecoration(itemDeco)
-            (grid_recyclerview_brand_my_page.adapter as MyPageBrandViewAdapter).setItemClickListener(object:
-                MyPageBrandViewAdapter.OnItemClickListener{
-                override fun onClick(v: View, position: Int) {
-                    //Log.d("클릭","됐어??")
-                    val BD = viewModel.getBrandDataInMyPage()!![position]
-                    viewModel2.setBrandDataForDetail(BD)
-                    findNavController().navigate(R.id.detailBrandFragment)
-                }
-            })
-            recyclerViewFlag =true
-            /*if(viewModel.getPostData()!!.isNotEmpty()){
-                grid_recyclerview_post.adapter = PostViewAdapter(viewModel)
-                val gridLayoutManager = GridLayoutManager(activity, 2)
-                grid_recyclerview_post.layoutManager = gridLayoutManager
-            }*/
-            //(grid_recyclerview_post.adapter as PostViewAdapter).notifyDataSetChanged()
         })
+    }
+
+    fun setRecyclerview(){
+        grid_recyclerview_brand_my_page.adapter = adapter
+        val gridLayoutManager = GridLayoutManager(activity, 4)
+        grid_recyclerview_brand_my_page.layoutManager = gridLayoutManager
+        if(itemDeco != null)
+            grid_recyclerview_brand_my_page.removeItemDecoration(itemDeco)
+        grid_recyclerview_brand_my_page.addItemDecoration(itemDeco)
+        (grid_recyclerview_brand_my_page.adapter as MyPageBrandViewAdapter).setItemClickListener(object:
+            MyPageBrandViewAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                //Log.d("클릭","됐어??")
+                val BD = viewModel.getBrandDataInMyPage()!![position]
+                viewModel2.setBrandDataForDetail(BD)
+                findNavController().navigate(R.id.detailBrandFragment)
+            }
+        })
+        recyclerViewFlag =true
     }
 }

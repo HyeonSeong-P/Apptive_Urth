@@ -106,24 +106,7 @@ internal class HomeFragment: Fragment() {
 
 
         viewModel.allBrandData.observe(viewLifecycleOwner, Observer {
-            best_brand_recyclerview.adapter = adapter1
-            val linearLayoutManager = LinearLayoutManager(activity)
-            linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-            best_brand_recyclerview.layoutManager = linearLayoutManager
-            if(itemDeco3 != null)
-                best_brand_recyclerview.removeItemDecoration(itemDeco3)
-            best_brand_recyclerview.addItemDecoration(itemDeco3)
-
-            (best_brand_recyclerview.adapter as HomeBrandViewAdapter).setItemClickListener(object:
-                HomeBrandViewAdapter.OnItemClickListener{
-                override fun onClick(v: View, position: Int) {
-                    //Log.d("클릭","됐어??")
-                    val BD = viewModel.getBestBrandData()!![position]
-                    viewModel2.setBrandDataForDetail(BD)
-                    findNavController().navigate(R.id.detailBrandFragment)
-                }
-            })
-            recyclerViewFlag = true
+            setBrandRecyclerView()
         })
 
         viewModel.allProductData.observe(viewLifecycleOwner, Observer {
@@ -134,32 +117,7 @@ internal class HomeFragment: Fragment() {
             }.attach()
 
             adapter4.notifyDataSetChanged()
-            new_product_recyclerview.adapter = adapter2
-            val linearLayoutManager = LinearLayoutManager(activity)
-            linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-            new_product_recyclerview.layoutManager = linearLayoutManager
-            val snapHelper: SnapHelper = SnapToBlock(3)
-            if (new_product_recyclerview.onFlingListener == null) snapHelper.attachToRecyclerView(
-                new_product_recyclerview
-            )
-            if(itemDeco != null)
-                new_product_recyclerview.removeItemDecoration(itemDeco)
-            new_product_recyclerview.addItemDecoration(itemDeco)
-            new_product_recyclerview.addItemDecoration(itemDeco2)
-            (new_product_recyclerview.adapter as HomeProductViewAdapter).setItemClickListener(object:
-                HomeProductViewAdapter.OnItemClickListener{
-                override fun onClick(v: View, position: Int) {
-                    //Log.d("클릭","됐어??")
-                    if(position == 8 && viewModel.getNewProductData()!!.size > 9){
-                        findNavController().navigate(R.id.moreNewProductFragment)
-                    }
-                    else{
-                        val PRD = viewModel.getNewProductData()!![position]
-                        viewModel2.setProductDataForDetail(PRD)
-                        findNavController().navigate(R.id.detailProductFragment)
-                    }
-                }
-            })
+
         })
 
         viewModel.moreNewOrNormalCall.observe(viewLifecycleOwner, Observer {
@@ -173,24 +131,47 @@ internal class HomeFragment: Fragment() {
         })
 
         viewModel.allPostData.observe(viewLifecycleOwner, Observer {
-            home_linear_post_recyclerview.adapter = adapter3
-            val linearLayoutManager = LinearLayoutManager(activity)
-            linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
-            home_linear_post_recyclerview.layoutManager = linearLayoutManager
-            if(itemDeco3 != null)
-                home_linear_post_recyclerview.removeItemDecoration(itemDeco3)
-            home_linear_post_recyclerview.addItemDecoration(itemDeco3)
-            (home_linear_post_recyclerview.adapter as HomePostViewAdapter).setItemClickListener(object:
-                HomePostViewAdapter.OnItemClickListener{
-                override fun onClick(v: View, position: Int) {
-                    //Log.d("클릭","됐어??")
-                    val PD = viewModel.getBestPostData()!![position]
-                    viewModel3.setPostDataForSee(PD,position)
-                    findNavController().navigate(R.id.postFragment)
-                }
-            })
+            setPostRecyclerView()
         })
     }
 
+    fun setPostRecyclerView(){
+        home_linear_post_recyclerview.adapter = adapter3
+        val linearLayoutManager = LinearLayoutManager(activity)
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        home_linear_post_recyclerview.layoutManager = linearLayoutManager
+        if(itemDeco3 != null)
+            home_linear_post_recyclerview.removeItemDecoration(itemDeco3)
+        home_linear_post_recyclerview.addItemDecoration(itemDeco3)
+        (home_linear_post_recyclerview.adapter as HomePostViewAdapter).setItemClickListener(object:
+            HomePostViewAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                //Log.d("클릭","됐어??")
+                val PD = viewModel.getBestPostData()!![position]
+                viewModel3.setPostDataForSee(PD,position)
+                findNavController().navigate(R.id.postFragment)
+            }
+        })
+    }
 
+    fun setBrandRecyclerView(){
+        best_brand_recyclerview.adapter = adapter1
+        val linearLayoutManager = LinearLayoutManager(activity)
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        best_brand_recyclerview.layoutManager = linearLayoutManager
+        if(itemDeco3 != null)
+            best_brand_recyclerview.removeItemDecoration(itemDeco3)
+        best_brand_recyclerview.addItemDecoration(itemDeco3)
+
+        (best_brand_recyclerview.adapter as HomeBrandViewAdapter).setItemClickListener(object:
+            HomeBrandViewAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                //Log.d("클릭","됐어??")
+                val BD = viewModel.getBestBrandData()!![position]
+                viewModel2.setBrandDataForDetail(BD)
+                findNavController().navigate(R.id.detailBrandFragment)
+            }
+        })
+        recyclerViewFlag = true
+    }
 }

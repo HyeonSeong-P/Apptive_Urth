@@ -19,7 +19,7 @@ internal class BrandProductDataRepository(private val db: FirebaseFirestore) {
     private var brandHashMapForDetect = hashMapOf<String,Boolean>()
     private var productHashMapForDetect = hashMapOf<String,Boolean>()
 
-    private var liveBrandData: MutableLiveData<List<BrandData>> = MutableLiveData<List<BrandData>>()
+    private var liveBrandData: MutableLiveData<List<BrandData>> = MutableLiveData()
     private var liveProductData: MutableLiveData<List<ProductData>> = MutableLiveData<List<ProductData>>()
     private var liveCampaignData: MutableLiveData<List<CampaignData>> = MutableLiveData()
 

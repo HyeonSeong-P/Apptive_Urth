@@ -95,14 +95,6 @@ internal class SearchPutOnBottomSheet() : BottomSheetDialogFragment() {
                 SearchPutOnProductViewAdapter.OnItemClickListener{
                 override fun onClick(v: View, position: Int) {
                     adapter.notifyDataSetChanged()
-                    //Log.d("클릭","됐어??")
-                    /*v.select_put_on_product_check_box.toggle()
-                    if(v.select_put_on_product_check_box.isChecked){
-
-                    }
-                    else{
-
-                    }*/
                 }
             })
 

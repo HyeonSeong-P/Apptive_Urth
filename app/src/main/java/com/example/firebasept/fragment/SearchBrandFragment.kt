@@ -61,6 +61,16 @@ internal class SearchBrandFragment: Fragment() {
         itemDeco =
             SearchBrandItemDeco(requireContext())
 
+        setRecyclerview()
+        viewModel.allBrandData.observe(viewLifecycleOwner, Observer {
+            adapter.notifyDataSetChanged()
+        })
+        viewModel.brandSearchText.observe(viewLifecycleOwner, Observer {
+            adapter.notifyDataSetChanged()
+        })
+    }
+
+    fun setRecyclerview(){
         recyclerview_brand_search.adapter = adapter
         val linearLayoutManager = LinearLayoutManager(activity)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -76,12 +86,6 @@ internal class SearchBrandFragment: Fragment() {
                 viewModel2.setBrandDataForDetail(BD)
                 findNavController().navigate(R.id.detailBrandFragment)
             }
-        })
-        viewModel.allBrandData.observe(viewLifecycleOwner, Observer {
-            adapter.notifyDataSetChanged()
-        })
-        viewModel.brandSearchText.observe(viewLifecycleOwner, Observer {
-            adapter.notifyDataSetChanged()
         })
     }
 }

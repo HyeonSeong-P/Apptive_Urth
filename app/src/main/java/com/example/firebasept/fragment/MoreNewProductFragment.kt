@@ -58,34 +58,38 @@ internal class MoreNewProductFragment:Fragment() {
         viewModel.initPR()
 
         viewModel.allProductData.observe(viewLifecycleOwner, Observer {
-            grid_recyclerview_more_new_product.adapter = adapter
-            val gridLayoutManager = GridLayoutManager(activity,3)
-            gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    // 카페고리 header 나 footer 영역은 grid 4칸을 전부 차지하여 표시
-                    if (viewModel.getMoreNewProductData()!![position].productName == ""
-                    ) {
-                        return gridLayoutManager.spanCount
-                    }
-                    return 1 // 나머지는 1칸만 사용
+            setRecyclerview()
+        })
+    }
+
+    fun setRecyclerview(){
+        grid_recyclerview_more_new_product.adapter = adapter
+        val gridLayoutManager = GridLayoutManager(activity,3)
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                // 카페고리 header 나 footer 영역은 grid 4칸을 전부 차지하여 표시
+                if (viewModel.getMoreNewProductData()!![position].productName == ""
+                ) {
+                    return gridLayoutManager.spanCount
+                }
+                return 1 // 나머지는 1칸만 사용
+            }
+        }
+        grid_recyclerview_more_new_product.layoutManager = gridLayoutManager
+
+        if(itemDeco != null)
+            grid_recyclerview_more_new_product.removeItemDecoration(itemDeco)
+        grid_recyclerview_more_new_product.addItemDecoration(itemDeco)
+        (grid_recyclerview_more_new_product.adapter as MoreNewProductViewAdapter).setItemClickListener(object:
+            MoreNewProductViewAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                //Log.d("클릭","됐어??")
+                val PRD = viewModel.getMoreNewProductData()!![position]
+                if(PRD.productName != ""){
+                    viewModel2.setProductDataForDetail(PRD)
+                    findNavController().navigate(R.id.detailProductFragment)
                 }
             }
-            grid_recyclerview_more_new_product.layoutManager = gridLayoutManager
-
-            if(itemDeco != null)
-                grid_recyclerview_more_new_product.removeItemDecoration(itemDeco)
-            grid_recyclerview_more_new_product.addItemDecoration(itemDeco)
-            (grid_recyclerview_more_new_product.adapter as MoreNewProductViewAdapter).setItemClickListener(object:
-                MoreNewProductViewAdapter.OnItemClickListener{
-                override fun onClick(v: View, position: Int) {
-                    //Log.d("클릭","됐어??")
-                    val PRD = viewModel.getMoreNewProductData()!![position]
-                    if(PRD.productName != ""){
-                        viewModel2.setProductDataForDetail(PRD)
-                        findNavController().navigate(R.id.detailProductFragment)
-                    }
-                }
-            })
         })
     }
 }

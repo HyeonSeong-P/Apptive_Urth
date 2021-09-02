@@ -4,6 +4,7 @@ import android.Manifest
 import android.Manifest.permission.*
 import android.app.Dialog
 import android.app.ProgressDialog.show
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -16,6 +17,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.Window
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -24,6 +26,7 @@ import androidx.core.text.isDigitsOnly
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -53,7 +56,8 @@ internal class MainActivity : AppCompatActivity(){
     // [START declare_auth]
     private lateinit var auth: FirebaseAuth
     // [END declare_auth]
-
+    lateinit var host:NavHostFragment
+    lateinit var navController: NavController
     lateinit var db: FirebaseFirestore
     lateinit var repository: PostDataRepository
     lateinit var repository2: UserDataRepository
@@ -82,6 +86,7 @@ internal class MainActivity : AppCompatActivity(){
         // 이걸 추가해야 뒤에 흰배경 없어짐!
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         dialog.show()
+        initViewFinal()
         initBottom()
         checkPermissions()
        // grantUriPermission()
@@ -98,7 +103,7 @@ internal class MainActivity : AppCompatActivity(){
         viewModel.initB()
         viewModel.initPR()
 
-        initViewFinal()
+
 
 
 
@@ -133,22 +138,7 @@ internal class MainActivity : AppCompatActivity(){
 
         }
         auth!!.addAuthStateListener(mAuthStateListener!!) // <필수> 어스스테이트리스너 할당하고 추가해줘야함.
-        // Configure Google Sign In
-        /*val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        // [START initialize_auth]
-        // Initialize Firebase Auth
-        auth = Firebase.auth
-        // [END initialize_auth]*/
-
-        /*login_button.setOnClickListener{
-            val signInIntent = googleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
-        }*/
         viewModel.dialogDismissCall.observe(this, Observer {
             dialog.dismiss()
         })
@@ -164,7 +154,7 @@ internal class MainActivity : AppCompatActivity(){
                         menu.findItem(R.id.bp_menu).setIcon(R.drawable.bp_unselected)
                         menu.findItem(R.id.us_style_menu).setIcon(R.drawable.usstyle_unselected)
                         menu.findItem(R.id.my_page_menu).setIcon(R.drawable.mypage_unselected)
-                        if(homeCount > 0){
+                        if(navController.currentDestination!!.id != R.id.homeFragment){
                             findNavController(R.id.nav_host_fragment).navigate(R.id.homeFragment)
                         }
 
@@ -176,8 +166,9 @@ internal class MainActivity : AppCompatActivity(){
                         menu.findItem(R.id.bp_menu).setIcon(R.drawable.bp_unselected)
                         menu.findItem(R.id.us_style_menu).setIcon(R.drawable.usstyle_unselected)
                         menu.findItem(R.id.my_page_menu).setIcon(R.drawable.mypage_unselected)
-                        findNavController(R.id.nav_host_fragment).navigate(R.id.usNewsFragment)
-
+                        if(navController.currentDestination!!.id != R.id.usNewsFragment){
+                            findNavController(R.id.nav_host_fragment).navigate(R.id.usNewsFragment)
+                        }
                     }
                     R.id.bp_menu -> {
                         item.setIcon(R.drawable.bp_selected)
@@ -185,7 +176,9 @@ internal class MainActivity : AppCompatActivity(){
                         menu.findItem(R.id.home_menu).setIcon(R.drawable.home_unselected)
                         menu.findItem(R.id.us_style_menu).setIcon(R.drawable.usstyle_unselected)
                         menu.findItem(R.id.my_page_menu).setIcon(R.drawable.mypage_unselected)
-                        findNavController(R.id.nav_host_fragment).navigate(R.id.brandProductFragment)
+                        if(navController.currentDestination!!.id != R.id.brandProductFragment){
+                            findNavController(R.id.nav_host_fragment).navigate(R.id.brandProductFragment)
+                        }
 
                     }
                     R.id.us_style_menu -> {
@@ -194,8 +187,9 @@ internal class MainActivity : AppCompatActivity(){
                         menu.findItem(R.id.bp_menu).setIcon(R.drawable.bp_unselected)
                         menu.findItem(R.id.home_menu).setIcon(R.drawable.home_unselected)
                         menu.findItem(R.id.my_page_menu).setIcon(R.drawable.mypage_unselected)
-                        findNavController(R.id.nav_host_fragment).navigate(R.id.usStyleFragment)
-
+                        if(navController.currentDestination!!.id != R.id.usStyleFragment){
+                            findNavController(R.id.nav_host_fragment).navigate(R.id.usStyleFragment)
+                        }
                     }
 
                     R.id.my_page_menu -> {
@@ -204,7 +198,9 @@ internal class MainActivity : AppCompatActivity(){
                         menu.findItem(R.id.bp_menu).setIcon(R.drawable.bp_unselected)
                         menu.findItem(R.id.us_style_menu).setIcon(R.drawable.usstyle_unselected)
                         menu.findItem(R.id.home_menu).setIcon(R.drawable.home_unselected)
-                        findNavController(R.id.nav_host_fragment).navigate(R.id.myPageFragment)
+                        if(navController.currentDestination!!.id != R.id.myPageFragment){
+                            findNavController(R.id.nav_host_fragment).navigate(R.id.myPageFragment)
+                        }
 
                     }
                 }
@@ -236,53 +232,13 @@ internal class MainActivity : AppCompatActivity(){
     }
 
 
-   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)!!
-                Log.d("tag", "firebaseAuthWithGoogle:" + account.id)
-                firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                // Google Sign In failed, update UI appropriately
-                Log.w("tagW", "Google sign in failed", e)
-                // ...
-            }
-        }
-    }
-
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    //Log.d(TAG, "signInWithCredential:success")
-                    val user = auth.currentUser
-                    Toast.makeText(this,"생성 완료",Toast.LENGTH_SHORT).show()
-                    //updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    //Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    // ...
-                    //Snackbar.make(view, "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
-                    //updateUI(null)
-                }
-
-                // ...
-            }
-    }*/
-
     fun initViewFinal() {
         //setSupportActionBar(main_toolbar) // 전체화면에 메인 툴바를 넣겠다.
 
-        val host = nav_host_fragment as NavHostFragment //우리가 만든것(nav_host_fragment)과 이미 있는것을 결합.nav_host_fragment 는 view,xml
+        host = nav_host_fragment as NavHostFragment //우리가 만든것(nav_host_fragment)과 이미 있는것을 결합.nav_host_fragment 는 view,xml
         //NavHostFragment 는 클래스
-        val navController = host.navController // 바로 윗줄 포함 두줄 필수. 네비게이션.xml에 접근위해.
+        navController = host.navController // 바로 윗줄 포함 두줄 필수. 네비게이션.xml에 접근위해.
+
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             val dest: String = try{
@@ -290,88 +246,51 @@ internal class MainActivity : AppCompatActivity(){
             } catch (e: Exception){
                 return@addOnDestinationChangedListener
             }
+            val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 
             when(destination.id){
                 R.id.homeFragment -> {
-                    if(homeCount == 0){
+                    /*if(homeCount == 0){
                         bottom_navigation_view.selectedItemId = R.id.home_menu
                         homeCount++
-                    }
+                    }*/
+                    bottom_navigation_view.selectedItemId = R.id.home_menu
 
                     bottom_navigation_view.visibility = View.VISIBLE
                 }
-                R.id.usNewsFragment -> bottom_navigation_view.visibility = View.VISIBLE
-                R.id.brandProductFragment -> bottom_navigation_view.visibility = View.VISIBLE
-                R.id.usStyleFragment -> bottom_navigation_view.visibility = View.VISIBLE
-                R.id.myPageFragment -> bottom_navigation_view.visibility = View.VISIBLE
+                R.id.usNewsFragment -> {
+                    bottom_navigation_view.selectedItemId = R.id.us_news_menu
+
+                    bottom_navigation_view.visibility = View.VISIBLE
+                }
+                R.id.brandProductFragment -> {
+                    bottom_navigation_view.selectedItemId = R.id.bp_menu
+
+                    bottom_navigation_view.visibility = View.VISIBLE
+                }
+                R.id.usStyleFragment -> {
+                    bottom_navigation_view.selectedItemId = R.id.us_style_menu
+
+                    bottom_navigation_view.visibility = View.VISIBLE
+                }
+                R.id.myPageFragment -> {
+                    bottom_navigation_view.selectedItemId = R.id.my_page_menu
+
+                    bottom_navigation_view.visibility = View.VISIBLE
+                }
                 else -> bottom_navigation_view.visibility = View.GONE
 
 
             }
-            /*if (destination.id == R.id.homeFragment || destination.id == R.id.usNewsFragment ||
-                    destination.id == R.id.brandProductFragment || destination.id == R.id.usStyleFragment ||
-                    destination.id == R.id.myPageFragment) {
-                bottom_navigation_view.visibility = View.VISIBLE
 
-                if(destination.id == R.id.homeFragment)
-                    bottom_navigation_view.selectedItemId = R.id.home_menu // 초반 아이템 선택!
-                *//*if (destination.id == R.id.homeFragment || destination.id == R.id.usNewsFragment ||
-                    destination.id == R.id.brandProductFragment || destination.id == R.id.usStyleFragment ||
-                    destination.id == R.id.myPageFragment)*//*
-
-            } else {
-                bottom_navigation_view.visibility = View.GONE
-            }*/
         }
-        /*navController.addOnDestinationChangedListener{_, destination, _ ->
-            // 화면이 바뀔때 키보드 무조건 숨김
-            val dest: String = try{
-                resources.getResourceName(destination.id)
-            } catch (e: Exception){
-                return@addOnDestinationChangedListener
-            }
-            //handleToolbar(destination)
-        } */// 원랜 ({})
+
 
     }
-    /*private fun updateUI(user: FirebaseUser?) {
-        hideProgressBar()
-        if (user != null) {
-            binding.status.text = getString(R.string.google_status_fmt, user.email)
-            binding.detail.text = getString(R.string.firebase_status_fmt, user.uid)
 
-            binding.signInButton.visibility = View.GONE
-            binding.signOutAndDisconnect.visibility = View.VISIBLE
-        } else {
-            binding.status.setText(R.string.signed_out)
-            binding.detail.text = null
 
-            binding.signInButton.visibility = View.VISIBLE
-            binding.signOutAndDisconnect.visibility = View.GONE
-        }
-    }*/
 
-    fun priceStringToInt(string: String): Int {
-        var priceString:String
-        var retPrice:Int = 0
-        /*GlobalScope.launch {
-            if(productData.price.contains(' ')){
-                priceString=productData.price.split(' ')[1]
-            }
-            else{
-                priceString=productData.price
-            }
-            retPrice = priceString.replace(("[^\\d.]").toRegex(),"").toInt()
-        }*/
-        if(string.contains(' ')){
-            priceString=string.split(' ')[1]
-        }
-        else{
-            priceString=string
-        }
-        retPrice = priceString.replace(("[^\\d.]").toRegex(),"").toInt()
-        return retPrice
-    }
 
     fun priceStringToInt2(string: String):Int{
         var retPrice:Int = 0

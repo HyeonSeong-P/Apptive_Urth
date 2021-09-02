@@ -82,7 +82,7 @@ internal class SearchProductFragment:Fragment() {
             SearchProductViewAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
                 val PRD = viewModel.getSearchProductData()!![position]
-                viewModel.setProductDataForDetail(PRD)
+                viewModel2.setProductDataForDetail(PRD)
                 findNavController().navigate(R.id.detailProductFragment)
             }
         })

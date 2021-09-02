@@ -59,6 +59,10 @@ internal class UsNewsFragment: Fragment() {
         viewModel.initC()
 
         viewModel.allCampaignData.observe(viewLifecycleOwner, Observer {
+            setRecyclerView()
+        })
+
+        /*viewModel.allCampaignData.observe(viewLifecycleOwner, Observer {
             if(!recyclerViewFlag){
                 recyclerViewFlag = true
                 setRecyclerView()
@@ -66,7 +70,7 @@ internal class UsNewsFragment: Fragment() {
             else{
                 adapter.notifyDataSetChanged()
             }
-        })
+        })*/
 
         viewModel.campaignWebSite.observe(viewLifecycleOwner, Observer {
             val i = Intent(Intent.ACTION_VIEW)

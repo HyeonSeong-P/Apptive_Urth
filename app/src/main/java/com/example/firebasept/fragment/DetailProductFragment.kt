@@ -200,7 +200,7 @@ internal class DetailProductFragment: Fragment() {
         }
     }
 
-    fun setRecyclerView(){
+    private fun setRecyclerView(){
         grid_recyclerview_post_in_detail_product.adapter = adapter
         val gridLayoutManager = GridLayoutManager(activity, 2)
         grid_recyclerview_post_in_detail_product.layoutManager = gridLayoutManager

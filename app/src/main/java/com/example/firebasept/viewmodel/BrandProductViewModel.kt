@@ -236,7 +236,7 @@ internal class BrandProductViewModel(private val postDataRepository: PostDataRep
     }
 
     fun getPostDataWithProductData(productName: String, brandName: String): List<PostData> {
-        Log.d("포스트","ㄹ호ㅓㄹ허")
+
         if(productName == null || productName == "" || brandName == null || brandName == "")
             return listOf()
         var postList = allPostData.value ?:return listOf()

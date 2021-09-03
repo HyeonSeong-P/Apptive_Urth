@@ -99,6 +99,7 @@ internal class ProductFragment:Fragment() {
             }
             if(clickTagNum == 7) setAllTagButtonDesign(true)
             else setAllTagButtonDesign(false)
+            setRecyclerView()
             if(recyclerViewFlag){
                 adapter.notifyDataSetChanged()
             }

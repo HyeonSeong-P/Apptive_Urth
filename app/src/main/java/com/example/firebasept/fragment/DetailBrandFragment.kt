@@ -95,16 +95,10 @@ internal class DetailBrandFragment: Fragment() {
         })
 
         viewModel.allBrandData.observe(viewLifecycleOwner, Observer {
-            Log.d("ㅁㄴㅇㅇㅇㅇ",brandData!!.brandName);
-            //왜 네비게이트 이후에도 브랜드데이터가 유지가 될까?... 뷰모델 생명주기 때문인ㄴ가?
             brandData = viewModel.getBrand(brandData!!.brandName)
             adapter = MajorProductViewAdapter(viewModel,brandData!!.brandName)
-
             setView()
             go_to_brand_website_btn.setOnClickListener {
-                //Log.d("사이트",productData!!.purchaseLink)
-                /*webview_product.visibility = View.VISIBLE
-                webview_product.loadUrl(productData!!.purchaseLink)*/
                 val i = Intent(Intent.ACTION_VIEW)
                 i.data = Uri.parse(brandData!!.brandLink)
                 startActivity(i)

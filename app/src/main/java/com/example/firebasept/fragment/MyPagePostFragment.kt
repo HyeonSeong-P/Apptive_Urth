@@ -80,34 +80,8 @@ internal class MyPagePostFragment:Fragment() {
         viewModel.allPostData.observe(viewLifecycleOwner, Observer {
             //콜백 안써도 그냥 라이브데이터 감지로 해도 되네?.. 로직은 비슷하긴 하니까 뭐..
 
-            grid_recyclerview_post_my_page.adapter = adapter
-            val gridLayoutManager = GridLayoutManager(activity, 2)
-            grid_recyclerview_post_my_page.layoutManager = gridLayoutManager
-            if(itemDeco != null)
-                grid_recyclerview_post_my_page.removeItemDecoration(itemDeco)
-            grid_recyclerview_post_my_page.addItemDecoration(itemDeco)
-            (grid_recyclerview_post_my_page.adapter as MyPagePostViewAdapter).setItemClickListener(object:
-                MyPagePostViewAdapter.OnItemClickListener{
-                override fun onClick(v: View, position: Int) {
-                    //Log.d("클릭","됐어??")
-                    val PD = viewModel.getPostDataInMyPage()!![position]
-                    viewModel3.postDataForPost.setValue(Pair(PD,position))
-                    findNavController().navigate(R.id.postFragment)
-                }
-            })
+            setRecyclerview()
 
-            /*if(!recyclerViewFlag){
-                recyclerViewFlag =true
-            }
-            else{
-                adapter.notifyDataSetChanged()
-            }*/
-            /*if(viewModel.getPostData()!!.isNotEmpty()){
-                grid_recyclerview_post.adapter = PostViewAdapter(viewModel)
-                val gridLayoutManager = GridLayoutManager(activity, 2)
-                grid_recyclerview_post.layoutManager = gridLayoutManager
-            }*/
-            //(grid_recyclerview_post.adapter as PostViewAdapter).notifyDataSetChanged()
         })
 
 
@@ -119,6 +93,24 @@ internal class MyPagePostFragment:Fragment() {
 
         viewModel.notifyCall.observe(viewLifecycleOwner, Observer {
             //(grid_recyclerview_post.adapter as PostViewAdapter).notifyDataSetChanged()
+        })
+    }
+
+    fun setRecyclerview(){
+        grid_recyclerview_post_my_page.adapter = adapter
+        val gridLayoutManager = GridLayoutManager(activity, 2)
+        grid_recyclerview_post_my_page.layoutManager = gridLayoutManager
+        if(itemDeco != null)
+            grid_recyclerview_post_my_page.removeItemDecoration(itemDeco)
+        grid_recyclerview_post_my_page.addItemDecoration(itemDeco)
+        (grid_recyclerview_post_my_page.adapter as MyPagePostViewAdapter).setItemClickListener(object:
+            MyPagePostViewAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                //Log.d("클릭","됐어??")
+                val PD = viewModel.getPostDataInMyPage()!![position]
+                viewModel3.postDataForPost.setValue(Pair(PD,position))
+                findNavController().navigate(R.id.postFragment)
+            }
         })
     }
 }

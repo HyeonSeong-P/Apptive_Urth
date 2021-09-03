@@ -59,7 +59,18 @@ internal class SearchProductFragment:Fragment() {
         itemDeco = ItemDeco(requireContext())
         adapter = SearchProductViewAdapter(viewModel)
 
+        setRecyclerview()
 
+        viewModel.allProductData.observe(viewLifecycleOwner, Observer {
+            adapter.notifyDataSetChanged()
+        })
+
+        viewModel.productSearchText.observe(viewLifecycleOwner, Observer {
+            adapter.notifyDataSetChanged()
+        })
+    }
+
+    fun setRecyclerview(){
         grid_recyclerview_product_search.adapter = adapter
         val gridLayoutManager = GridLayoutManager(activity,2)
         grid_recyclerview_product_search.layoutManager = gridLayoutManager
@@ -71,26 +82,9 @@ internal class SearchProductFragment:Fragment() {
             SearchProductViewAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
                 val PRD = viewModel.getSearchProductData()!![position]
-                viewModel.setProductDataForDetail(PRD)
+                viewModel2.setProductDataForDetail(PRD)
                 findNavController().navigate(R.id.detailProductFragment)
-                //Log.d("클릭","됐어??")
-                /*if(position == 8 && viewModel.getNewProductData()!!.size > 9){
-                    findNavController().navigate(R.id.moreNewProductFragment)
-                }
-                else{
-                    val PRD = viewModel.getNewProductData()!![position]
-                    viewModel.setProductDataForDetail(PRD)
-                    findNavController().navigate(R.id.detailProductFragment)
-                }*/
             }
-        })
-
-        viewModel.allProductData.observe(viewLifecycleOwner, Observer {
-            adapter.notifyDataSetChanged()
-        })
-
-        viewModel.productSearchText.observe(viewLifecycleOwner, Observer {
-            adapter.notifyDataSetChanged()
         })
     }
 }

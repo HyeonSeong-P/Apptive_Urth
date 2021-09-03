@@ -66,7 +66,7 @@ internal class HomeFragment: Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             requireActivity().finishAffinity()
         }
-        Glide.with(requireContext()).load("https://lsdcollection.com/wp-content/uploads/2021/02/ULKIN-LSD-2021FW-NYFW-1000x667.png" ).into(home_main_image)// url로 불러올때 이거쓰자! 이게 좋다!! 글라이드 개꿀!!
+        Glide.with(requireContext()).load("https://vegantigerkorea.com/web/upload/NNEditor/20210323/19_shop1_165755.jpg" ).into(home_main_image)// url로 불러올때 이거쓰자! 이게 좋다!! 글라이드 개꿀!!
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()

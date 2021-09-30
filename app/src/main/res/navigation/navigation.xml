@@ -8,32 +8,32 @@
     <fragment
         android:id="@+id/mainFragment"
         android:label="main_fragment"
-        android:name="com.example.firebasept.fragment.MainFragment"
+        android:name="com.byphs.firebasept.fragment.MainFragment"
         />
 
     <fragment
         android:id="@+id/homeFragment"
         android:label="home_fragment"
-        android:name="com.example.firebasept.fragment.HomeFragment"
+        android:name="com.byphs.firebasept.fragment.HomeFragment"
         />
 
 
     <fragment
         android:id="@+id/writePostFragment"
         android:label="community_fragment"
-        android:name="com.example.firebasept.fragment.WritePostFragment"
+        android:name="com.byphs.firebasept.fragment.WritePostFragment"
         />
 
     <fragment
         android:id="@+id/usStyleFragment"
         android:label="us_style_fragment"
-        android:name="com.example.firebasept.fragment.UsStyleFragment"
+        android:name="com.byphs.firebasept.fragment.UsStyleFragment"
         />
 
     <fragment
         android:id="@+id/postFragment"
         android:label="post_fragment"
-        android:name="com.example.firebasept.fragment.SeePostFragment"
+        android:name="com.byphs.firebasept.fragment.SeePostFragment"
         >
         <action
             android:id="@+id/action_postFragment_to_writePostFragment"
@@ -46,65 +46,65 @@
     <fragment
         android:id="@+id/signUpBaseFragment"
         android:label="sign_up_base_fragment"
-        android:name="com.example.firebasept.fragment.SignUpBaseFragment"/>
+        android:name="com.byphs.firebasept.fragment.SignUpBaseFragment"/>
 
     <fragment
         android:id="@+id/usNewsFragment"
         android:label="us_news_fragment"
-        android:name="com.example.firebasept.fragment.UsNewsFragment"/>
+        android:name="com.byphs.firebasept.fragment.UsNewsFragment"/>
 
     <fragment
         android:id="@+id/myPageFragment"
         android:label="my_page_fragment"
-        android:name="com.example.firebasept.fragment.MyPageFragment"/>
+        android:name="com.byphs.firebasept.fragment.MyPageFragment"/>
 
     <fragment
         android:id="@+id/brandProductFragment"
         android:label="brand_product_fragment"
-        android:name="com.example.firebasept.fragment.BrandProductFragment"/>
+        android:name="com.byphs.firebasept.fragment.BrandProductFragment"/>
 
     <fragment
         android:id="@+id/settingFragment"
         android:label="setting_fragment"
-        android:name="com.example.firebasept.fragment.SettingFragment"/>
+        android:name="com.byphs.firebasept.fragment.SettingFragment"/>
 
     <fragment
         android:id="@+id/editPasswordFragment"
         android:label="edit_password_fragment"
-        android:name="com.example.firebasept.fragment.EditPasswordFragment"/>
+        android:name="com.byphs.firebasept.fragment.EditPasswordFragment"/>
 
     <fragment
         android:id="@+id/findPasswordFragment"
         android:label="find_password_fragment"
-        android:name="com.example.firebasept.fragment.FindPasswordFragment"/>
+        android:name="com.byphs.firebasept.fragment.FindPasswordFragment"/>
 
     <fragment
         android:id="@+id/detailProductFragment"
         android:label="detail_product_fragment"
-        android:name="com.example.firebasept.fragment.DetailProductFragment"/>
+        android:name="com.byphs.firebasept.fragment.DetailProductFragment"/>
 
     <fragment
         android:id="@+id/detailBrandFragment"
         android:label="detail_brand_fragment"
-        android:name="com.example.firebasept.fragment.DetailBrandFragment"/>
+        android:name="com.byphs.firebasept.fragment.DetailBrandFragment"/>
 
     <fragment
         android:id="@+id/moreNewProductFragment"
         android:label="more_new_product_fragment"
-        android:name="com.example.firebasept.fragment.MoreNewProductFragment"/>
+        android:name="com.byphs.firebasept.fragment.MoreNewProductFragment"/>
 
     <fragment
         android:id="@+id/userPagePostFragment"
         android:label="user_page_post_fragment"
-        android:name="com.example.firebasept.fragment.UserFragment"/>
+        android:name="com.byphs.firebasept.fragment.UserFragment"/>
 
     <fragment
         android:id="@+id/searchBrandProductFragment"
         android:label="search_brand_product_fragment"
-        android:name="com.example.firebasept.fragment.SearchBrandProductFragment"/>
+        android:name="com.byphs.firebasept.fragment.SearchBrandProductFragment"/>
 
     <fragment
         android:id="@+id/signUpLastStepFragment"
         android:label="sign_up_last_step_fragment"
-        android:name="com.example.firebasept.fragment.SignUpLastStepFragment"/>
+        android:name="com.byphs.firebasept.fragment.SignUpLastStepFragment"/>
 </navigation>

@@ -1,10 +1,48 @@
 {
   "project_info": {
     "project_number": "199990107645",
+    "firebase_url": "https://jellyproject-3dfae-default-rtdb.firebaseio.com",
     "project_id": "jellyproject-3dfae",
     "storage_bucket": "jellyproject-3dfae.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199990107645:android:f439fd753359f9f288cd94",
+        "android_client_info": {
+          "package_name": "com.byphs.firebasept"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199990107645-ft6pl5alr0f03lmgm3cs48c6k2s3mdc8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.byphs.firebasept",
+            "certificate_hash": "1fdf7fa7eb2f081c2b9885df0af953768d66121d"
+          }
+        },
+        {
+          "client_id": "199990107645-3mni7niem26ma1k7qgudr98p4vh6dh7o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQkbQgAoJhxDpNw-4K4NA2iVvPcjpQKdI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199990107645-3mni7niem26ma1k7qgudr98p4vh6dh7o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:199990107645:android:444be4fe2d005b6088cd94",

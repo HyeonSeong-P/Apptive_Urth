@@ -6,7 +6,7 @@
     android:background="#faf8f7">
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/detail_product_srcoll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -125,7 +125,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <ImageButton
         android:id="@+id/back_btn_detail_product"

@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
@@ -140,7 +141,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 
